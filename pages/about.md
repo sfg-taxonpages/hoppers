@@ -1,8 +1,8 @@
 ---
 title: About
-contact_email: user@example.com
+contact_email: arboridia@gmail.com
 copyright: All content is CC 0 so that it maybe be shared throughout the world in places like Wikipedia.
-citation: Project collaborative. 2022. Website title. Available at https://example.com. 
+citation: Dmitriev, D.A. et al., 2022. World Auchenorrhyncha Database. Available at https://proceps.github.io/auchenorrhyncha/#/. 
 ---
 
 # {{frontmatter.title}}
