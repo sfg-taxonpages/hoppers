@@ -1,6 +1,6 @@
 ---
-title: "TaxonPages: World Auchenorrhyncha Database"
-lead: "Taxa from your imagination to the web"
+title: "World Auchenorrhyncha Database"
+lead: "The original 3i World Auchenorrhyncha Database was migrated into TaxonWorks and now served with TaxonPages"
 project: "Your project"
 ---
    
@@ -14,7 +14,8 @@ Welcome to *{{ frontmatter.project }}*, a website of taxon pages generated from 
 <autocomplete-otu class="w-80"/>
 
 ## Announcements
-* September 15, 2022 - The website is live!
+* September 15, 2022 - Public pages are served with TaxonPages
+* November 15, 2018 - 3i World Auchenorrhyncha database is migrated into TaxonWorks
 
 ## Find out more
 Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](/about).

@@ -14,13 +14,9 @@ Please contact us if you need extended access to the data underlying here. The T
 If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/our/project/tracker). You can also [chat live with us](https://slackservername). We can also be reached via [email](mailto:{{frontmatter.contact_email}}).   
 
 ## Team
- _Please contact us if you would like to join this effort._
+ _Please contact us if you would like to join this project._
 
-Made possible by the wonderful:
-* Gandalf - Technical lead
-* Aragorn - Outside advisor 
-* Frodo - Lead curator
-* Samwise - Emotional support
+* Dmitry Dmitriev - Project curator
 
 ## Citing
 * This website - {{frontmatter.citation}}
