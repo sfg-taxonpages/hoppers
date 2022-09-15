@@ -1,7 +1,7 @@
 ---
 title: "World Auchenorrhyncha Database"
 lead: "The original 3i World Auchenorrhyncha Database was migrated into TaxonWorks and now served with TaxonPages"
-project: "Your project"
+project: "World Auchenorrhyncha Database"
 ---
    
 # {{frontmatter.title}}
