@@ -1,6 +1,6 @@
 ---
   header_logo_url: logo.png
-  header_logo_text: World Auchenorrhyncha Database
+  header_logo_text: "World Auchenorrhyncha Database"
   header_links:
     - label: Home
       link: /

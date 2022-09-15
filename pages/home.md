@@ -1,7 +1,7 @@
 ---
-title: TaxonPages: World Auchenorrhyncha Database
-lead: Taxa from your imagination to the web
-project: Your project
+title: "TaxonPages: World Auchenorrhyncha Database"
+lead: "Taxa from your imagination to the web"
+project: "Your project"
 ---
    
 # {{frontmatter.title}}
