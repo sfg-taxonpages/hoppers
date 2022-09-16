@@ -10,7 +10,7 @@ _{{frontmatter.lead}}_
 ## Overview
 Welcome to *{{ frontmatter.project }}*, a website of taxon pages generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org). 
 
-## Search World Auchenorrhyncha Database
+## Search the database
 <autocomplete-otu class="w-80"/>
 
 ## Announcements
