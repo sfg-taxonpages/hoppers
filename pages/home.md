@@ -18,4 +18,4 @@ Welcome to *{{ frontmatter.project }}*, a website of taxon pages generated from 
 * November 15, 2018 - World Auchenorrhyncha database is migrated from 3i into TaxonWorks
 
 ## Find out more
-Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](/about).
+Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](https://proceps.github.io/auchenorrhyncha/#/about).
