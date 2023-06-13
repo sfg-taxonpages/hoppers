@@ -19,4 +19,4 @@ Welcome to *{{ frontmatter.project }}*, a website of taxon pages generated from 
 * 2003 - 3i World Auchenorrhyncha database is first available online
 
 ## Find out more
-Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](https://proceps.github.io/auchenorrhyncha/#/about).
+Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](https://hoppers.speciesfile.org/about).
