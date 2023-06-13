@@ -14,6 +14,6 @@ project: "World Auchenorrhyncha Database"
 </tr></table>
 </td></tr></table>
 <center>
-<autocomplete-otu style="width:40rem;"/>
+<autocomplete-otu style="width:25rem;"/>
 </center>
 
