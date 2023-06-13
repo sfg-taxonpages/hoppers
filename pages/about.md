@@ -3,7 +3,10 @@ title: About
 contact_email: arboridia@gmail.com
 project: World Auchenorrhyncha Database
 copyright: All content is CC0 so that it maybe be shared throughout the world and used without any restrictions.
-citation: Dmitriev, D.A. et al. (2022 onward). <i>World Auchenorrhyncha Database</i>. TaxonPages. Available at <i>https://hoppers.speciesfile.org</i>. 
+site_title: World Auchenorrhyncha Database.
+site_address: https://hoppers.speciesfile.org.
+authors_short: Dmitriev, D.A. et al.  
+authors_list: Dmitriev, D.A., Anufriev, G.A., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., McKamey, S., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
 
 # {{frontmatter.title}}
@@ -13,18 +16,20 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 {{frontmatter.lead}}
 
 ## Citing
-* {{frontmatter.citation}} 
+* Short: {{frontmatter.authors_short}} (2022 onward). _{{frontmatter.site_title}}_ TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
+* Long: {{frontmatter.authors_list}} (2022 onward). _{{frontmatter.site_title}}_ TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
 * Individual taxon pages - See citation at the bottom of each page.
 
 ## Announcements
 * September 15, 2022 - World Auchenorrhyncha database is available online through TaxonPages
 * November 15, 2018 - World Auchenorrhyncha database is migrated from 3i into TaxonWorks
-* 2003 - 3i World Auchenorrhyncha database is first available online
+* July 1, 2003 - 3i World Auchenorrhyncha database is first available online
 
 ## Team
  _Please contact us if you would like to join this project._
 
 * Dmitriev, Dmitry A. - project manager, data curator
+* Anufriev, Georgy A. - data provider
 * Blanco-Rodríguez, Edith - data curator 
 * Borodin, Oleg I. - data curator 
 * Cao, Yang-Hui - data provider
@@ -32,7 +37,7 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * Dietrich, Christopher H. - data curator 
 * Dmitrieva, Margarita O. - data curator
 * El-Sonbati, Saad A. - data curator
-* Evangelista, Olivia - data provider
+* Evangelista de Souza, Olivia - data provider
 * McKamey, Stuart - data provider
 * Morris, Brendan O. - data provider
 * Novoselova, Marina - data curator 
