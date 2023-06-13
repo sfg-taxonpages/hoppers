@@ -9,3 +9,10 @@ project: "World Auchenorrhyncha Database"
 <autocomplete-otu style="width: 40rem;"/>
 </center>
 
+<script>
+    function displayDate() {
+      var currentDate = new Date();
+      var dateString = currentDate.toDateString();
+      document.getElementById('date').innerHTML = dateString;
+    }
+</script>
