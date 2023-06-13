@@ -7,6 +7,18 @@ citation: Dmitriev, D.A. et al., 2022 onward. World Auchenorrhyncha Database. Av
 
 # {{frontmatter.title}}
 
+## Overview
+Welcome to *{{ frontmatter.project }}*, a Taxon Pages website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
+{{frontmatter.lead}}
+
+## Announcements
+* September 15, 2022 - World Auchenorrhyncha database is available online through TaxonPages
+* November 15, 2018 - World Auchenorrhyncha database is migrated from 3i into TaxonWorks
+* 2003 - 3i World Auchenorrhyncha database is first available online
+
+## Find out more
+Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](https://hoppers.speciesfile.org/about).
+
 ## Dig deeper
 Please contact us if you need extended access to the data underlying here. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. With a little training from us we'd be happy to provide you access to this additional functionality. Over time we expect this site to gradually mirror that extended functionality.
 
