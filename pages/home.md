@@ -13,6 +13,8 @@ project: "World Auchenorrhyncha Database"
 <td><img src="../public/Fulgorid_Lycorma_delicatula_China.png" alt="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich" title="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich"></td>
 </tr></table>
 
+<table border='0' align='center'><tr><td>
 <autocomplete-otu style="width:25rem;"/>
+</td></tr></table>
 
 
