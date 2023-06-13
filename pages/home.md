@@ -8,3 +8,11 @@ project: "World Auchenorrhyncha Database"
 <center>
 <autocomplete-otu class="w-80"/>
 </center>
+
+<script>
+    function displayDate() {
+      var currentDate = new Date();
+      var dateString = currentDate.toDateString();
+      document.getElementById("date").innerHTML = dateString;
+    }
+</script>

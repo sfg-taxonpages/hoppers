@@ -1,7 +1,7 @@
 ---
 title: About
 contact_email: arboridia@gmail.com
-copyright: All content is CC 0 so that it maybe be shared throughout the world in places like Wikipedia.
+copyright: All content is CC0 so that it maybe be shared throughout the world and used without any restrictions.
 citation: Dmitriev, D.A. et al., 2022 onward. World Auchenorrhyncha Database. Available at https://hoppers.speciesfile.org. 
 ---
 
@@ -31,7 +31,7 @@ If you have a question, want to report new data relevant to the project, or have
 * Dmitry Dmitriev - Project curator
 
 ## Citing
-* This website - {{frontmatter.citation}}
+* This website - {{frontmatter.citation}} Web site. (Accessed on: <span id='date'></span>)
 * Individual taxon pages - See citation at the bottom of each page.  
 
 ## Data
@@ -42,3 +42,12 @@ Want to create your own site? This website is built completely on open-source so
 
 ## Copyright
 _{{frontmatter.copyright}}_
+
+
+<script>
+    function displayDate() {
+      var currentDate = new Date();
+      var dateString = currentDate.toDateString();
+      document.getElementById('date').innerHTML = dateString;
+    }
+</script>
