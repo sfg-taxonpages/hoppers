@@ -4,14 +4,12 @@ lead: "The database has a comprehansive checklist of the hemipteran suborder Auc
 project: "World Auchenorrhyncha Database"
 ---
    
-# {{frontmatter.title}}
-_{{frontmatter.lead}}_
-
 ## Search the database
-<autocomplete-otu class="w-80"/>
+<autocomplete-otu class="w-160"/>
 
 ## Overview
-Welcome to *{{ frontmatter.project }}*, a website of taxon pages generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org). 
+Welcome to *{{ frontmatter.project }}*, a Taxon Pages website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
+{{frontmatter.lead}}
 
 ## Announcements
 * September 15, 2022 - World Auchenorrhyncha database is available online through TaxonPages
