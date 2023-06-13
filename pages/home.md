@@ -6,7 +6,7 @@ project: "World Auchenorrhyncha Database"
 
 <br><br><br><br>
 <center>
-<autocomplete-otu style="width:40rem"/>
+<autocomplete-otu style="width: 40rem;"/>
 </center>
 
 <script>
