@@ -8,5 +8,5 @@ project: "World Auchenorrhyncha Database"
 
 <center>
 ## Search the database
-<autocomplete-otu class="w-160"/>
+<autocomplete-otu class="w-80"/>
 </center>
