@@ -5,11 +5,11 @@ project: "World Auchenorrhyncha Database"
 ---
 
 <p>
-<img src='../public/Flexamia_grammica_Cicadellidae.png' alt='Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich'></a>
-<img src='../public/Bocydium_PNSO.png' alt='Membracidae: Bocydium sp. Photo by C.H. Dietrich'></a>
-<img src='../public/Cercopidae_Brazil.png' alt='Cecropidae from Brazil. Photo by C.H. Dietrich'></a>
-<img src='../public/Cicadidae_Cicadetta_calliope.png' alt='Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich'></a>
-<img src='../public/Fulgorid_Lycorma_delicatula_China.png' alt='Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich'></a>
+<img src='../public/Flexamia_grammica_Cicadellidae.png' alt='Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich'>
+<img src='../public/Bocydium_PNSO.png' alt='Membracidae: Bocydium sp. Photo by C.H. Dietrich'>
+<img src='../public/Cercopidae_Brazil.png' alt='Cecropidae from Brazil. Photo by C.H. Dietrich'>
+<img src='../public/Cicadidae_Cicadetta_calliope.png' alt='Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich'>
+<img src='../public/Fulgorid_Lycorma_delicatula_China.png' alt='Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich'>
 </p>
 
 <br>
