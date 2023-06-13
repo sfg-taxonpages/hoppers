@@ -4,7 +4,8 @@ lead: "The database has a comprehansive checklist of the hemipteran suborder Auc
 project: "TaxonPages: World Auchenorrhyncha Database"
 ---
 
-<table border='0' align='center'><tr>
+<div style='display: flex; justify-content: center; align-items: center;'>
+<table border='0'><tr>
 <td><img src="../public/Flexamia_grammica_Cicadellidae.png" alt="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"  title="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"></td>
 <td><img src="../public/Tinobregmus_viridescens_IL.png" alt="Cicadellidae: Tinobregmus vittatus Van Duzee, 1894. Photo by C.H. Dietrich"  title="Cicadellidae: Tinobregmus vittatus Van Duzee, 1894. Photo by C.H. Dietrich"></td>
 <td><img src="../public/Bocydium_PNSO.png" alt="Membracidae: Bocydium sp. Photo by C.H. Dietrich"  title="Membracidae: Bocydium sp. Photo by C.H. Dietrich"></td>
@@ -12,9 +13,10 @@ project: "TaxonPages: World Auchenorrhyncha Database"
 <td><img src="../public/Cicadidae_Cicadetta_calliope.png" alt="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"  title="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"></td>
 <td><img src="../public/Fulgorid_Lycorma_delicatula_China.png" alt="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich" title="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich"></td>
 </tr></table>
+</div>
 
-<table border='0' style='width: 100%; text-aligh: center'><tr><td width="1%" style="text-align: center">
+<div style='display: flex; justify-content: center; align-items: center;'>
 <autocomplete-otu style="width:25rem;"/>
-</td></tr></table>
+</div>
 
 
