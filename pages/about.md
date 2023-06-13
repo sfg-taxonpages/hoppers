@@ -1,14 +1,15 @@
 ---
 title: About
 contact_email: arboridia@gmail.com
+project: World Auchenorrhyncha Database
 copyright: All content is CC0 so that it maybe be shared throughout the world and used without any restrictions.
-citation: Dmitriev, D.A. et al. (2022 onward). World Auchenorrhyncha Database. Available at _https://hoppers.speciesfile.org_. 
+citation: Dmitriev, D.A. et al. (2022 onward). <i>World Auchenorrhyncha Database</i>. TaxonPages. Available at <i>https://hoppers.speciesfile.org</i>. 
 ---
 
 # {{frontmatter.title}}
 
 ## Overview
-Welcome to *{{ frontmatter.project }}*, a Taxon Pages website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
+Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
 {{frontmatter.lead}}
 
 ## Citing
