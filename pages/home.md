@@ -4,8 +4,9 @@ lead: "The database has a comprehansive checklist of the hemipteran suborder Auc
 project: "World Auchenorrhyncha Database"
 ---
 
-<table border='0' align='center' style='table-layout: auto;'><tr>
+<table border='0' align='center'><tr>
 <td><img src="../public/Flexamia_grammica_Cicadellidae.png" alt="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"  title="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"></td>
+<td><img src="../public/Tinobregmus_viridescens_IL.png" alt="Cicadellidae: Tinobregmus vittatus Van Duzee, 1894. Photo by C.H. Dietrich"  title="Cicadellidae: Tinobregmus vittatus Van Duzee, 1894. Photo by C.H. Dietrich"></td>
 <td><img src="../public/Bocydium_PNSO.png" alt="Membracidae: Bocydium sp. Photo by C.H. Dietrich"  title="Membracidae: Bocydium sp. Photo by C.H. Dietrich"></td>
 <td><img src="../public/Cercopidae_Brazil.png" alt="Cecropidae from Brazil. Photo by C.H. Dietrich"  title="Cecropidae from Brazil. Photo by C.H. Dietrich"></td>
 <td><img src="../public/Cicadidae_Cicadetta_calliope.png" alt="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"  title="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"></td>
