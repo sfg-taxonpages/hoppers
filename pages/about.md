@@ -6,7 +6,7 @@ copyright: All content is CC0 so that it maybe be shared throughout the world an
 site_title: World Auchenorrhyncha Database.
 site_address: https://hoppers.speciesfile.org.
 authors_short: Dmitriev, D.A. et al.  
-authors_list: Dmitriev, D.A., Anufriev, G.A., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., McKamey, S., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
+authors_list: Dmitriev, D.A., Anufriev, G.A., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., McKamey, S., Kunz, G., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
 
 # {{frontmatter.title}}
@@ -39,6 +39,7 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * El-Sonbati, Saad A. - data curator
 * Evangelista de Souza, Olivia - data provider
 * McKamey, Stuart - data provider
+* Kunz, Gernot - photo provider
 * Morris, Brendan O. - data provider
 * Novoselova, Marina - data curator 
 * Pinedo-Escatel, Jorge Adilson - data curator
