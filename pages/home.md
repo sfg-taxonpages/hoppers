@@ -4,7 +4,7 @@ lead: "The database has a comprehansive checklist of the hemipteran suborder Auc
 project: "World Auchenorrhyncha Database"
 ---
 
-<table><tr><td>
+<table><tr><td allign='center'>
 <table border='0' align='center'><tr>
 <td><img src="../public/Flexamia_grammica_Cicadellidae.png" alt="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"  title="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"></td>
 <td><img src="../public/Bocydium_PNSO.png" alt="Membracidae: Bocydium sp. Photo by C.H. Dietrich"  title="Membracidae: Bocydium sp. Photo by C.H. Dietrich"></td>
