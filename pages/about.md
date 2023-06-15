@@ -6,7 +6,7 @@ copyright: All content is CC0 so that it maybe be shared throughout the world an
 site_title: World Auchenorrhyncha Database.
 site_address: https://hoppers.speciesfile.org.
 authors_short: Dmitriev, D.A. et al.  
-authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gonçalves, A.C., McKamey, S., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
+authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gonçalves, A.C., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
 
 # {{frontmatter.title}}
@@ -41,6 +41,7 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * Evangelista de Souza, Olivia - data provider
 * Gonçalves, A.C. - data provider
 * McKamey, Stuart - data provider
+* Kohler, Michelle - data curator
 * Kunz, Gernot - photo provider
 * Malenovský, Igor - data provider
 * Morris, Brendan O. - data provider

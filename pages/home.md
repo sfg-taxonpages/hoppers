@@ -5,7 +5,7 @@ project: "TaxonPages: World Auchenorrhyncha Database"
 ---
 
 <div style='display: flex; justify-content: center; align-items: center;'>
-<table border='0'><tr>
+<table style='border: 0'><tr>
 <td><img src="../public/Flexamia_grammica_Cicadellidae.png" alt="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"  title="Cicadellidae: Flexamia grammica (Ball, 1900). Photo by C.H. Dietrich"></td>
 <td><img src="../public/Tinobregmus_viridescens_IL.png" alt="Cicadellidae: Tinobregmus vittatus Van Duzee, 1894. Photo by C.H. Dietrich"  title="Cicadellidae: Tinobregmus vittatus Van Duzee, 1894. Photo by C.H. Dietrich"></td>
 <td><img src="../public/Bocydium_PNSO.png" alt="Membracidae: Bocydium sp. Photo by C.H. Dietrich"  title="Membracidae: Bocydium sp. Photo by C.H. Dietrich"></td>
