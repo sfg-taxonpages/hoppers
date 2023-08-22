@@ -39,7 +39,7 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * Dmitrieva, Margarita O. - data curator
 * El-Sonbati, Saad A. - data curator
 * Evangelista de Souza, Olivia - data provider
-* Gonçalves, Anna Clara - data provider
+* Gonçalves, Ana Clara - data provider
 * Hendrix, Solomon - data provider
 * McKamey, Stuart - data provider
 * Kohler, Michelle - data curator
