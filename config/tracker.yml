@@ -4,5 +4,5 @@ issue_trackers:
     url: https://github.com/sfg-taxonpages/hoppers/issues/new
 
   - label: Website
-    description: Report if a link, panel, or any other feature of the website is not working as expected, as well as any suggestion on the website improvement.
+    description: Report if a link, panel, or any other feature of the website is not working as expected, as well as any suggestions on the website improvement.
     url: https://github.com/SpeciesFileGroup/taxonpages/issues/new/choose
