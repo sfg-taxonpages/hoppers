@@ -1,8 +1,8 @@
 issue_trackers:
   - label: Data
-    description: E.g. missing data that I'd like to add, misspellings, or invalid data
+    description: Report missing information, e.g., taxon names, combinations, citations, or incorrect data.
     url: https://github.com/sfg-taxonpages/hoppers/issues/new
 
   - label: Website
-    description: E.g. a link, panel, or other feature is not working as expected
+    description: Report if a link, panel, or any other feature of the website is not working as expected, as well as any suggestion on the website improvement.
     url: https://github.com/SpeciesFileGroup/taxonpages/issues/new/choose

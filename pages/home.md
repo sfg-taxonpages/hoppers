@@ -18,5 +18,3 @@ project: "TaxonPages: World Auchenorrhyncha Database"
 <div style='display: flex; justify-content: center; align-items: center;'>
 <autocomplete-otu style="width:25rem;"/>
 </div>
-
-
