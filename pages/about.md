@@ -62,7 +62,7 @@ Learn how to collaborate with the {{ frontmatter.title }} project. Contact infor
 Please contact us if you need extended access to the data underlying here. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. With a little training from us we'd be happy to provide you access to this additional functionality. Over time we expect this site to gradually mirror that extended functionality.
 
 ## Contact
-If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/SpeciesFileGroup/taxonpages/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks). We can also be reached via [email](mailto:{{arboridia@gmail.com}}).
+If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/sfg-taxonpages/hoppers/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks). We can also be reached via [email](mailto:{{arboridia@gmail.com}}).
 
 ## Data
 Data for these pages is collaboratively curated online in a [TaxonWorks](https://taxonworks.org) project. All data behind this site served as JSON through calls to a [TaxonWorks API](https://api.taxonworks.org). You can follow along by using the Console of your browser to explore the Network tab. 
