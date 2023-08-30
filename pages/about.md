@@ -15,6 +15,10 @@ authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez,
 Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
 {{frontmatter.lead}}
 
+## Statistics
+* <ProjectStats :data="['Taxon names', 'Project sources', 'Depictions', 'Documents', 'Collection objects']"/>
+* See more detailed [statistics](https://stats.taxonworks.org/?server=sfg.taxonworks.org&project_token=ZEJhFp9sq8kBfks15qAbAg).
+
 ## Citing
 * Full citation: {{frontmatter.authors_list}} (2022 onward). _{{frontmatter.site_title}}_ TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
 * Short citation: {{frontmatter.authors_short}} (2022 onward). _{{frontmatter.site_title}}_ TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
