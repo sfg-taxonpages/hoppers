@@ -12,6 +12,7 @@ project: "TaxonPages: World Auchenorrhyncha Database"
 <td><a href="https://hoppers.speciesfile.org/otus/2367/overview"><img src="../public/images/Cercopidae_Brazil.png" alt="Cecropidae from Brazil. Photo by C.H. Dietrich"  title="Cecropidae from Brazil. Photo by C.H. Dietrich"></a></td>
 <td><a href="https://hoppers.speciesfile.org/otus/7666/overview"><img src="../public/images/Cicadidae_Cicadetta_calliope.png" alt="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"  title="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"></a></td>
 <td><a href="https://hoppers.speciesfile.org/otus/71398/overview"><img src="../public/images/Fulgorid_Lycorma_delicatula_China.png" alt="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich" title="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich"></a></td>
+<td><ProjectStats :data="['Taxon names', 'Project sources', 'Depictions', 'Documents', 'Collection objects']"/></td>
 </tr></table>
 </div>
 
@@ -19,4 +20,3 @@ project: "TaxonPages: World Auchenorrhyncha Database"
 <autocomplete-otu style="width:25rem;"/>
 </div>
 
-<ProjectStats :data="['Taxon names', 'Project sources', 'Depictions', 'Documents', 'Collection objects']"/>
