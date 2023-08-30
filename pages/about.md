@@ -25,9 +25,9 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * See more detailed [statistics](https://stats.taxonworks.org/?server=sfg.taxonworks.org&project_token=ZEJhFp9sq8kBfks15qAbAg).
 
 ## Announcements
-* September 15, 2022 - World Auchenorrhyncha database is available online through TaxonPages
-* November 15, 2018 - World Auchenorrhyncha database is migrated from 3i into TaxonWorks
 * July 9, 2003 - 3i World Auchenorrhyncha database is first available online
+* November 15, 2018 - World Auchenorrhyncha database is migrated from 3i in TaxonWorks
+* September 15, 2022 - World Auchenorrhyncha database is available online with TaxonPages
 
 ## Team
  _Please contact us if you would like to join this project._
