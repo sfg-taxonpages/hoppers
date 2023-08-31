@@ -1,8 +1,8 @@
 ---
 metadata:
   - name: description
-    content: TaxonPages is a tool to serve taxon pages.
+    content: World Auchenorrhyncha database
   - name: keywords
-    content: taxonpages, species, sfg
+    content: taxonpages, species, speciesfilegroup, Species File Group, Auchenorrhyncha, Hemiptera, Homoptera
   - name: robots
     content: follow
