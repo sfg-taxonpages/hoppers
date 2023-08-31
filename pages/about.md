@@ -12,7 +12,7 @@ authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez,
 # {{frontmatter.title}}
 
 ## Overview
-Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
+Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/SpeciesFileGroup/taxonpages) website generated from the {{ frontmatter.project }} Project, a comprehensive collaborative effort managed in [TaxonWorks](https://taxonworks.org).
 {{frontmatter.lead}}
 
 ## Citing
@@ -25,9 +25,9 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * See more detailed [statistics](https://stats.taxonworks.org/?server=sfg.taxonworks.org&project_token=ZEJhFp9sq8kBfks15qAbAg).
 
 ## Announcements
-* July 9, 2003 - [3i World Auchenorrhyncha database](http://dmitriev.speciesfile.org/) is first available online
-* November 15, 2018 - World Auchenorrhyncha database is migrated from 3i in TaxonWorks
-* September 15, 2022 - World Auchenorrhyncha database is available online with TaxonPages
+* July 9, 2003 - [3i World Auchenorrhyncha database](http://dmitriev.speciesfile.org) is first available online
+* November 15, 2018 - World Auchenorrhyncha database is migrated from [3i](http://dmitriev.speciesfile.org) in [TaxonWorks](https://taxonworks.org)
+* September 15, 2022 - [World Auchenorrhyncha database](https://hoppers.speciesfile.org) is available online with TaxonPages
 
 ## Team
  
