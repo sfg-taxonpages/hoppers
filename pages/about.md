@@ -2,7 +2,7 @@
 title: About
 contact_email: arboridia@gmail.com
 project: World Auchenorrhyncha Database
-copyright: All content is CC0 so that it maybe be shared throughout the world and used without any restrictions.
+copyright: Creative Commons — CC0, media may have different copyright.
 site_title: World Auchenorrhyncha Database.
 site_address: https://hoppers.speciesfile.org.
 authors_short: Dmitriev, D.A. et al.  
