@@ -25,48 +25,44 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * See more detailed [statistics](https://stats.taxonworks.org/?server=sfg.taxonworks.org&project_token=ZEJhFp9sq8kBfks15qAbAg).
 
 ## Announcements
-* July 9, 2003 - 3i World Auchenorrhyncha database is first available online
+* July 9, 2003 - [3i World Auchenorrhyncha database](http://dmitriev.speciesfile.org/) is first available online
 * November 15, 2018 - World Auchenorrhyncha database is migrated from 3i in TaxonWorks
 * September 15, 2022 - World Auchenorrhyncha database is available online with TaxonPages
 
 ## Team
- _Please contact us if you would like to join this project._
-
-* Dmitriev, Dmitry A. - project manager, data curator
-* Anufriev, Georgy A. - data provider
-* Bartlett, Charles R. - data provider
-* Blanco-Rodríguez, Edith - data curator 
-* Borodin, Oleg I. - data curator 
-* Cao, Yang-Hui - data provider
-* Deitz, Lewis L. - data provider 
-* Dietrich, Christopher H. - data curator 
+ 
+* [Dmitriev, Dmitry A.](https://orcid.org/0000-0002-3293-4794) - project manager, data curator
+* [Anufriev, Georgy A.](https://www.wikidata.org/wiki/Q27731478) - data provider
+* [Bartlett, Charles R.](https://orcid.org/0000-0001-9428-7337) - data provider
+* [Blanco-Rodríguez, Edith](https://orcid.org/0000-0001-5453-4102) - data curator 
+* [Borodin, Oleg I.](https://orcid.org/0000-0001-8907-2139) - data curator 
+* [Cao, Yang-Hui](https://orcid.org/0000-0002-0515-0767) - data provider
+* [Deitz, Lewis L.](https://orcid.org/0000-0002-8727-9379) - data provider 
+* [Dietrich, Christopher H.](https://orcid.org/0000-0003-4005-4305) - data curator 
 * Dmitrieva, Margarita O. - data curator
-* El-Sonbati, Saad A. - data curator
-* Evangelista de Souza, Olivia - data provider
+* [El-Sonbati, Saad A.](https://orcid.org/0000-0002-7360-9197) - data curator
+* [Evangelista de Souza, Olivia](https://orcid.org/0000-0001-8515-3548) - data provider
 * Gonçalves, Ana Clara - data provider
-* Hendrix, Solomon - data provider
-* McKamey, Stuart - data provider
-* Kohler, Michelle - data curator
-* Kunz, Gernot - photo provider
-* Malenovský, Igor - data provider
+* [Hendrix, Solomon](https://orcid.org/0000-0002-9564-1198) - data provider
+* [McKamey, Stuart](https://orcid.org/0000-0002-9617-0594) - data provider
+* [Kohler, Michelle](https://orcid.org/0000-0001-7185-4511) - data curator
+* [Kunz, Gernot](https://orcid.org/0000-0001-7858-0402) - photo provider
+* [Malenovský, Igor](https://orcid.org/0000-0001-8840-2263) - data provider
 * Morris, Brendan O. - data provider
 * Novoselova, Marina - data curator 
-* Pinedo-Escatel, Jorge Adilson - data curator
-* Rakitov, Roman A. - data provider
+* [Pinedo-Escatel, J. Adilson](https://orcid.org/0000-0002-7664-860X) - data curator
+* [Rakitov, Roman A.](https://orcid.org/0000-0002-2748-2770) - data provider
 * Rothschild, Mark J. - data provider
-* Sanborn, Allen F. - data provider
-* Takiya, Daniela M. - data provider
+* [Sanborn, Allen F.](https://orcid.org/0000-0001-5729-7106) - data provider
+* [Takiya, Daniela M.](https://orcid.org/0000-0002-6233-3615) - data provider
 * Wallace, Matthew S. - data provider
-* Zahniser, James N. - data provider
+* [Zahniser, James N.](https://orcid.org/0000-0002-3341-3560) - data provider
 
-## Find out more
-Learn how to collaborate with the {{ frontmatter.title }} project. Contact information, technical details, and more are available at [About](https://hoppers.speciesfile.org/about).
-
-## Dig deeper
-Please contact us if you need extended access to the data underlying here. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. With a little training from us we'd be happy to provide you access to this additional functionality. Over time we expect this site to gradually mirror that extended functionality.
+## Collaboration
+Learn how to collaborate with the {{ frontmatter.title }} project. We need more people to update bibliography, distribution records, images, type material, interactive keys. You can work on your own research project within {{ frontmatter.title }}. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. 
 
 ## Contact
-If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/sfg-taxonpages/hoppers/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks). We can also be reached via [email](mailto:{{arboridia@gmail.com}}).
+If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/sfg-taxonpages/hoppers/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks), or contact us by email.
 
 ## Data
 Data for these pages is collaboratively curated online in a [TaxonWorks](https://taxonworks.org) project. All data behind this site served as JSON through calls to a [TaxonWorks API](https://api.taxonworks.org). You can follow along by using the Console of your browser to explore the Network tab. 
