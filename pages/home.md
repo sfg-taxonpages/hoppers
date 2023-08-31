@@ -13,7 +13,7 @@ project: "TaxonPages: World Auchenorrhyncha Database"
 <td><a href="https://hoppers.speciesfile.org/otus/7666/overview"><img src="../public/images/Cicadidae_Cicadetta_calliope.png" alt="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"  title="Cicadidae: Cicadetta calliope (Walker, 1830). Photo by C.H. Dietrich"></a></td>
 <td><a href="https://hoppers.speciesfile.org/otus/71398/overview"><img src="../public/images/Fulgorid_Lycorma_delicatula_China.png" alt="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich" title="Fulgoridae: Lycorma delicatula (White, 1845). Photo by C.H. Dietrich"></a></td>
 </tr>
-<tr><td colspan="6" style="text-align: center"><ProjectStats :data="['Taxon names', 'Project sources', 'Depictions', 'Documents', 'Collection objects']" class="capitalize"/></td></tr>
+<tr><td colspan="6" style="text-align: center"><ProjectStats :data="['Taxon names', 'Collection objects', 'Project sources', 'Documents', 'Images']" class="capitalize"/></td></tr>
 </table>
 </div>
 
