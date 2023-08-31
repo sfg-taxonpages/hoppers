@@ -43,7 +43,7 @@ Welcome to *{{ frontmatter.project }}*, a TaxonPages website generated from the 
 * [El-Sonbati, Saad A.](https://orcid.org/0000-0002-7360-9197) - data curator
 * [Evangelista de Souza, Olivia](https://orcid.org/0000-0001-8515-3548) - data provider
 * Gonçalves, Ana Clara - data provider
-* [Hendrix, Solomon](https://orcid.org/0000-0002-9564-1198) - data provider
+* [Hendrix, Solomon](https://orcid.org/0000-0002-9564-1198) - data curator
 * [McKamey, Stuart](https://orcid.org/0000-0002-9617-0594) - data provider
 * [Kohler, Michelle](https://orcid.org/0000-0001-7185-4511) - data curator
 * [Kunz, Gernot](https://orcid.org/0000-0001-7858-0402) - photo provider
