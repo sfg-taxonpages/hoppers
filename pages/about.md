@@ -2,9 +2,8 @@
 title: About
 contact_email: arboridia@gmail.com
 project: World Auchenorrhyncha Database
-copyright: Creative Commons — CC0, media may have different copyright.
-site_title: World Auchenorrhyncha Database.
-site_address: https://hoppers.speciesfile.org.
+site_title: World Auchenorrhyncha Database
+site_address: https://hoppers.speciesfile.org
 authors_short: Dmitriev, D.A. et al.  
 authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gonçalves, A.C., Hendrix, S., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
@@ -69,7 +68,4 @@ Data for these pages is collaboratively curated online in a [TaxonWorks](https:/
 
 ## Technical
 Want to create your own site? This website is built completely on open-source software. There is a [site template](https://github.com/SpeciesFileGroup/collaboration.html) with more information. Data are curated in a [TaxonWorks](https://taxonworks.org) project then shared via a [TaxonWorks API](https://api.taxonworks.org). Come [chat](https://gitter.im/SpeciesFileGroup/taxonworks) with the TaxonWorks community at any time.
-
-## Copyright
-_{{frontmatter.copyright}}_
 
