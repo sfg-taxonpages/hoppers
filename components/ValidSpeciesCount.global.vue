@@ -1,5 +1,5 @@
 <template>
-  <span>{{ count }}</span>
+  <span>{{ count.toLocaleString() }}</span>
 </template>
 
 <script setup>
