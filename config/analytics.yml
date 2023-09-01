@@ -1,7 +1,7 @@
 analytics_services:
   enableDev: true
   analytics:
-    - id: 'G-XXXXX'
+    - id: 'G-HWBZCRJR1T'
       disable: false
       config:
         cookie_domain: auto
