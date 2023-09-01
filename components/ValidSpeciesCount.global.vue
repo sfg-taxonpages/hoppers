@@ -19,7 +19,7 @@ onMounted(() => {
       }
     })
     .then((response) => {
-      count.value = response.headers['pagination-total']
+      count.value = Number(response.headers['pagination-total'])
     })
 })
 </script>
