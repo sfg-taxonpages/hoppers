@@ -7,6 +7,6 @@ taxa_page_overview:
       - - panel:map
         - panel:type
         - panel:type-specimen
-        - panel:nomenclature-references
         - panel:content
+        - panel:nomenclature-references
         - panel:statistics
