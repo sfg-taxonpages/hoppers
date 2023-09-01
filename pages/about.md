@@ -20,7 +20,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * Individual taxon pages - See citation at the bottom of each page.
 
 ## Statistics
-* <ProjectStats :data="['Taxon names', 'Project sources', 'Depictions', 'Documents', 'Collection objects']"/>
+* Valid Species: <ValidSpeciesCount/>; <ProjectStats :data="['Taxon names', 'Collection objects', 'Project sources', 'Documents', 'Images']" class="capitalize"/>
 * See more detailed [statistics](https://stats.taxonworks.org/?server=sfg.taxonworks.org&project_token=ZEJhFp9sq8kBfks15qAbAg).
 
 ## Announcements
