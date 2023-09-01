@@ -12,6 +12,7 @@ onMounted(() => {
   makeAPIRequest
     .get('/taxon_names.json', {
       params: {
+        per: 1,
         validity: true,
         taxon_name_id: [330629],
         rank: ['NomenclaturalRank::Iczn::SpeciesGroup::Species'],
