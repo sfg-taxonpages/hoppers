@@ -13,6 +13,7 @@ onMounted(() => {
     .get('/taxon_names.json', {
       params: {
         validity: true,
+        taxon_name_id: [330629],
         rank: ['NomenclaturalRank::Iczn::SpeciesGroup::Species'],
         descendants: true
       }
