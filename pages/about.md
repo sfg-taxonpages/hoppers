@@ -15,8 +15,8 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 {{frontmatter.lead}}
 
 ## Citing
-* Full citation: {{frontmatter.authors_list}} (2022 onward). _{{frontmatter.site_title}}_ TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
-* Short citation: {{frontmatter.authors_short}} (2022 onward). _{{frontmatter.site_title}}_ TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
+* Full citation: {{frontmatter.authors_list}} (2022 onward). _{{frontmatter.site_title}}_. TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
+* Short citation: {{frontmatter.authors_short}} (2022 onward). _{{frontmatter.site_title}}_. TaxonPages. Available at _{{frontmatter.site_address}}_ (Accessed on [_date_])
 * Individual taxon pages - See citation at the bottom of each page.
 
 ## Statistics
