@@ -1,6 +1,6 @@
 issue_trackers:
   - label: Data
-    description: Report missing information, e.g., taxon names, combinations, citations, or incorrect data.
+    description: Report missing information, e.g., taxon names, combinations, citations, or incorrect data. The issue could also be reported by email to Dmitry Dmitriev.
     url: https://github.com/sfg-taxonpages/hoppers/issues/new
 
   - label: Website
