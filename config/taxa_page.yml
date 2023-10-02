@@ -1,12 +1,13 @@
-taxa_page_overview:
-  panels:
-    - - - panel:gallery
-        - panel:descendants
-        - panel:nomenclature
+taxa_page:
+  overview:
+    panels:
+      - - - panel:gallery
+          - panel:descendants
+          - panel:nomenclature
 
-      - - panel:map
-        - panel:type
-        - panel:type-specimen
-        - panel:content
-        - panel:nomenclature-references
-        - panel:statistics
+        - - panel:map
+          - panel:type
+          - panel:type-specimen
+          - panel:content
+          - panel:nomenclature-references
+          - panel:statistics
