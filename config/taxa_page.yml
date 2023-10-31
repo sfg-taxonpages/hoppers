@@ -4,11 +4,11 @@ taxa_page:
       - - - panel:gallery
           - panel:descendants
           - panel:nomenclature
-          - panel:etymology
 
         - - panel:map
           - panel:type
           - panel:type-specimen
+          - panel:etymology
           - panel:content
           - panel:nomenclature-references
           - panel:statistics
