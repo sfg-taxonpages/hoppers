@@ -1,30 +1,26 @@
 <template>
-  <VCard>
+  <VCard v-if="taxon.etymology || adjective || classifications.length">
     <VCardHeader> Gender, form, and etymology </VCardHeader>
     <VCardContent class="text-sm">
-      <div v-html="taxon.etymology" />
-      <hr class="my-4" />
+      <template v-if="!adjective">
+        <span
+          v-for="item in classifications"
+          v-html="item.object_tag"
+          class="block"
+        />
+      </template>
+
       <span
-        v-for="item in classifications"
-        v-html="item.object_tag"
-        class="block"
-      />
-      <div
-        v-if="inSpeciesGroup && adjectiveOrParticiple"
+        v-if="inSpeciesGroup && adjectiveOrParticiple && adjective"
         class="flex-col gap-2 mt-4"
       >
-        <div
-          v-for="(label, key) in NAMES_PROP"
-          :key="key"
-        >
-          <template v-if="taxon[key]">
-            <p class="text-sm">
-              {{ label }} name:
-              <span class="font-bold">{{ taxon[key] }}</span>
-            </p>
-          </template>
-        </div>
-      </div>
+        Adjective: <b>{{ adjective }}</b>
+      </span>
+
+      <template v-if="taxon.etymology">
+        <hr class="my-4" />
+        Etymology: <span v-html="taxon.etymology" />
+      </template>
     </VCardContent>
   </VCard>
 </template>
@@ -37,8 +33,8 @@ const SPECIES_GROUP = 'SpeciesGroup'
 const SPECIES_AND_INFRASPECIES = 'SpeciesAndInfraspecies'
 const NAMES_PROP = {
   masculine_name: 'Masculine',
-  femenine_name: 'Femenine',
-  neuter: 'Neuter'
+  feminine_name: 'Femenine',
+  neuter_name: 'Neuter'
 }
 
 const props = defineProps({
@@ -47,6 +43,13 @@ const props = defineProps({
     required: true
   }
 })
+
+const adjective = computed(() =>
+  Object.keys(NAMES_PROP)
+    .map((key) => props.taxon[key])
+    .filter(Boolean)
+    .join(', ')
+)
 
 const classifications = ref([])
 
@@ -71,7 +74,9 @@ function loadClassifications() {
   makeAPIRequest
     .get('/taxon_name_classifications', { params })
     .then(({ data }) => {
-      classifications.value = data
+      classifications.value = data.filter((item) =>
+        item.type.includes('::Latinized::')
+      )
     })
 }
 
