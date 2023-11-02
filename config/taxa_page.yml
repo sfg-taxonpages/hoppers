@@ -5,7 +5,9 @@ taxa_page:
           - panel:descendants
           - panel:nomenclature
 
-        - - panel:map
+        - - id: panel:map
+            bind:
+              cluster: false
           - panel:type
           - panel:type-specimen
           - panel:etymology
