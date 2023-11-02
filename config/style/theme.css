@@ -22,14 +22,14 @@
   --color-scrollbar-thumb: 156, 163, 175;
   --color-scrollbar-track: 229, 231, 235;
 
-  --color-map-shape-opacity: 0.5;
+  --color-map-shape-opacity: 0.1;
   --color-map-marker-opacity: 1.0;
 }
 
 .dark {
   --color-primary: 23, 23, 23;
   --color-primary-content: 255, 255, 255;
-  
+
   --color-secondary: 14, 165, 233;
   --color-secondary-content: 255, 255, 255;
 
