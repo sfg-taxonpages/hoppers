@@ -2,19 +2,16 @@
   <VCard v-if="taxon.etymology || adjective || classifications.length">
     <VCardHeader> Gender, form, and etymology </VCardHeader>
     <VCardContent class="text-sm">
-      <template v-if="!adjective">
-        <span
-          v-for="item in classifications"
-          v-html="item.object_tag"
-          class="block"
-        />
-      </template>
+      <b
+        v-html="humanTypeList"
+        class="block"
+      />
 
       <span
         v-if="inSpeciesGroup && adjectiveOrParticiple && adjective"
         class="flex-col gap-2 mt-4"
       >
-        Adjective: <b>{{ adjective }}</b>
+        <i>{{ adjective }}</i>
       </span>
 
       <template v-if="taxon.etymology">
@@ -31,10 +28,18 @@ import { makeAPIRequest } from '@/utils'
 
 const SPECIES_GROUP = 'SpeciesGroup'
 const SPECIES_AND_INFRASPECIES = 'SpeciesAndInfraspecies'
-const NAMES_PROP = {
-  masculine_name: 'Masculine',
-  feminine_name: 'Femenine',
-  neuter_name: 'Neuter'
+const NAMES_PROP = ['masculine_name', 'feminine_name', 'neuter_name']
+
+const TYPE_LIST = {
+  'TaxonNameClassification::Latinized::Gender::Masculine': 'Masculine',
+  'TaxonNameClassification::Latinized::Gender::Feminine': 'Feminine',
+  'TaxonNameClassification::Latinized::Gender::Neuter': 'Neuter',
+  'TaxonNameClassification::Latinized::PartOfSpeech::Adjective': 'Adjective',
+  'TaxonNameClassification::Latinized::PartOfSpeech::Participle': 'Participle',
+  'TaxonNameClassification::Latinized::PartOfSpeech::NounInApposition':
+    'Noun in apposition',
+  'TaxonNameClassification::Latinized::PartOfSpeech::NounInGenitiveCase':
+    'Noun in genitive case'
 }
 
 const props = defineProps({
@@ -45,8 +50,7 @@ const props = defineProps({
 })
 
 const adjective = computed(() =>
-  Object.keys(NAMES_PROP)
-    .map((key) => props.taxon[key])
+  NAMES_PROP.map((key) => props.taxon[key])
     .filter(Boolean)
     .join(', ')
 )
@@ -60,6 +64,13 @@ const adjectiveOrParticiple = computed(() =>
       item.type.includes('::PartOfSpeech::Participle')
   )
 )
+
+const humanTypeList = computed(() => {
+  return classifications.value
+    .map((item) => TYPE_LIST[item.type])
+    .filter(Boolean)
+    .join(', ')
+})
 
 const inSpeciesGroup = computed(() => {
   const rank = props.taxon.rank_string
