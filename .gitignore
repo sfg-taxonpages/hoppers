@@ -4,5 +4,7 @@
 !config
 !config/**
 !public
+!panels
+!panels/**
 !README.md
 config/**/*.development.yml
