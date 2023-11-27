@@ -16,7 +16,7 @@
 
       <template v-if="taxon.etymology">
         <hr class="my-4" />
-        Etymology: <span v-html="taxon.etymology" />
+        Etymology: <span v-html="md.render(taxon.etymology)" />
       </template>
     </VCardContent>
   </VCard>
@@ -25,6 +25,7 @@
 <script setup>
 import { computed, ref, watch } from 'vue'
 import { makeAPIRequest } from '@/utils'
+import MarkdownIt from 'markdown-it'
 
 const SPECIES_GROUP = 'SpeciesGroup'
 const SPECIES_AND_INFRASPECIES = 'SpeciesAndInfraspecies'
@@ -48,6 +49,8 @@ const props = defineProps({
     required: true
   }
 })
+
+const md = new MarkdownIt()
 
 const adjective = computed(() =>
   NAMES_PROP.map((key) => props.taxon[key])
