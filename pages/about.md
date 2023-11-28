@@ -5,7 +5,7 @@ project: World Auchenorrhyncha Database
 site_title: World Auchenorrhyncha Database
 site_address: https://hoppers.speciesfile.org
 authors_short: Dmitriev, D.A. et al.  
-authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gonçalves, A.C., Hendrix, S., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
+authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gjonov, I.V., Gonçalves, A.C., Hendrix, S., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
 
 # {{frontmatter.title}}
@@ -41,6 +41,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * Dmitrieva, Margarita O. - data curator
 * [El-Sonbati, Saad A.](https://orcid.org/0000-0002-7360-9197) - data curator
 * [Evangelista de Souza, Olivia](https://orcid.org/0000-0001-8515-3548) - data provider
+* [Gjonov, Ilia V.](https://orcid.org/0000-0002-4239-9756) - data provider
 * Gonçalves, Ana Clara - data provider
 * [Hendrix, Solomon](https://orcid.org/0000-0002-9564-1198) - data curator
 * [McKamey, Stuart](https://orcid.org/0000-0002-9617-0594) - data provider
@@ -59,6 +60,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 
 ## Collaboration
 Learn how to collaborate with the {{ frontmatter.project }} project. We need more people to update bibliography, distribution records, images, type material, interactive keys. You can work on your own research project within {{ frontmatter.project }}. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. 
+* Subscribe to the email listserv: [https://lists.illinois.edu/lists/info/auch-announce](https://lists.illinois.edu/lists/info/auch-announce)
 
 ## Contact
 If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/sfg-taxonpages/hoppers/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks), or contact us by email.
