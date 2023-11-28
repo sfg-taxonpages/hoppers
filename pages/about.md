@@ -41,7 +41,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * Dmitrieva, Margarita O. - data curator
 * [El-Sonbati, Saad A.](https://orcid.org/0000-0002-7360-9197) - data curator
 * [Evangelista de Souza, Olivia](https://orcid.org/0000-0001-8515-3548) - data provider
-* [Gjonov, Ilia V.](https://orcid.org/0000-0002-4239-9756) - data provider
+* [Gjonov, Ilia V.](https://orcid.org/0000-0002-4239-9756) - data curator
 * Gonçalves, Ana Clara - data provider
 * [Hendrix, Solomon](https://orcid.org/0000-0002-9564-1198) - data curator
 * [McKamey, Stuart](https://orcid.org/0000-0002-9617-0594) - data provider
