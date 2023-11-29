@@ -61,6 +61,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 ## Collaboration
 Learn how to collaborate with the {{ frontmatter.project }} project. We need more people to update bibliography, distribution records, images, type material, interactive keys. You can work on your own research project within {{ frontmatter.project }}. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. 
 * Subscribe to the email listserv: [https://lists.illinois.edu/lists/info/auch-announce](https://lists.illinois.edu/lists/info/auch-announce)
+* We have weekly meeting about the Auchenorrhyncha database and TaxonWorks on Wednesdays at 9:00AM US Central time or 15:00UTC.
 
 ## Contact
 If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/sfg-taxonpages/hoppers/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks), or contact us by email.
