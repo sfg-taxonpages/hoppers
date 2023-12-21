@@ -50,7 +50,7 @@ const props = defineProps({
   }
 })
 
-const md = new MarkdownIt()
+const md = new MarkdownIt({ html: true })
 
 const adjective = computed(() =>
   NAMES_PROP.map((key) => props.taxon[key])
