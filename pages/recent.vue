@@ -1,48 +1,51 @@
 <template>
-  <div class="container mx-auto py-8 flex flex-col gap-4">
-    <VCard>
-      <VCardHeader><h1 class="text-md">Taxon names</h1></VCardHeader>
-      <VCardContent>
-        <VTable>
-          <VTableHeader>
-            <VTableHeaderRow>
-              <VTableHeaderCell>Taxon name</VTableHeaderCell>
-              <VTableHeaderCell>Author</VTableHeaderCell>
-            </VTableHeaderRow>
-          </VTableHeader>
-          <VTableBody>
-            <VTableBodyRow
-              v-for="item in taxonNames"
-              :key="item.id"
-            >
-              <VTableBodyCell v-html="item.cached_html" />
-              <VTableBodyCell v-html="item.cached_author_year" />
-            </VTableBodyRow>
-          </VTableBody>
-        </VTable>
-      </VCardContent>
-    </VCard>
+  <div class="container mx-auto py-4">
+    <h1 class="text-4xl font-bold">Recent</h1>
+    <div class="flex flex-col gap-4 mt-4">
+      <VCard>
+        <VCardHeader><h1 class="text-md">Taxon names</h1></VCardHeader>
+        <VCardContent>
+          <VTable>
+            <VTableHeader>
+              <VTableHeaderRow>
+                <VTableHeaderCell>Taxon name</VTableHeaderCell>
+                <VTableHeaderCell>Author</VTableHeaderCell>
+              </VTableHeaderRow>
+            </VTableHeader>
+            <VTableBody>
+              <VTableBodyRow
+                v-for="item in taxonNames"
+                :key="item.id"
+              >
+                <VTableBodyCell v-html="item.cached_html" />
+                <VTableBodyCell v-html="item.cached_author_year" />
+              </VTableBodyRow>
+            </VTableBody>
+          </VTable>
+        </VCardContent>
+      </VCard>
 
-    <VCard>
-      <VCardHeader><h1 class="text-md">Sources</h1></VCardHeader>
-      <VCardContent>
-        <VTable>
-          <VTableHeader>
-            <VTableHeaderRow>
-              <VTableHeaderCell>Source</VTableHeaderCell>
-            </VTableHeaderRow>
-          </VTableHeader>
-          <VTableBody>
-            <VTableBodyRow
-              v-for="item in sources"
-              :key="item.id"
-            >
-              <VTableBodyCell v-html="item.cached" />
-            </VTableBodyRow>
-          </VTableBody>
-        </VTable>
-      </VCardContent>
-    </VCard>
+      <VCard>
+        <VCardHeader><h1 class="text-md">Sources</h1></VCardHeader>
+        <VCardContent>
+          <VTable>
+            <VTableHeader>
+              <VTableHeaderRow>
+                <VTableHeaderCell>Source</VTableHeaderCell>
+              </VTableHeaderRow>
+            </VTableHeader>
+            <VTableBody>
+              <VTableBodyRow
+                v-for="item in sources"
+                :key="item.id"
+              >
+                <VTableBodyCell v-html="item.cached" />
+              </VTableBodyRow>
+            </VTableBody>
+          </VTable>
+        </VCardContent>
+      </VCard>
+    </div>
   </div>
 </template>
 
