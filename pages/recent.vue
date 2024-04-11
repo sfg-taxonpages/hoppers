@@ -3,7 +3,6 @@
     <h1 class="text-4xl font-bold">Recent</h1>
     <div class="flex flex-col gap-4 mt-4">
       <VCard>
-        <VCardHeader><h1 class="text-md">Taxon names</h1></VCardHeader>
         <VCardContent>
           <VTable>
             <VTableHeader>
@@ -26,7 +25,6 @@
       </VCard>
 
       <VCard>
-        <VCardHeader><h1 class="text-md">Sources</h1></VCardHeader>
         <VCardContent>
           <VTable>
             <VTableHeader>
