@@ -1,7 +1,7 @@
 ---
-title: "TaxonPages: World Auchenorrhyncha Database"
-lead: "The database has a comprehansive checklist of the hemipteran suborder Auchenorrhyncha. Besides nomenclature, the database contains descriptions, distributions, biological associations (host plants, parasitoids, etc.), literature references, illustrations, and tools for identification of selected groups. It was designed and maintained with support from several grants from National Science Foundation (USA)."
-project: "TaxonPages: World Auchenorrhyncha Database"
+title: "TaxonPages: World Auchenorhyncha Database"
+lead: "The database has a comprehansive checklist of the hemipteran suborder Auchenorhyncha. Besides nomenclature, the database contains descriptions, distributions, biological associations (host plants, parasitoids, etc.), literature references, illustrations, and tools for identification of selected groups. It was designed and maintained with support from several grants from National Science Foundation (USA)."
+project: "TaxonPages: World Auchenorhyncha Database"
 ---
 
 <div style='display: flex; justify-content: center; align-items: center;'>
