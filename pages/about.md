@@ -1,8 +1,8 @@
 ---
 title: About
 contact_email: arboridia@gmail.com
-project: World Auchenorhyncha Database
-site_title: World Auchenorhyncha Database
+project: World Auchenorrhyncha Database
+site_title: World Auchenorrhyncha Database
 site_address: https://hoppers.speciesfile.org
 authors_short: Dmitriev, D.A. et al.  
 authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gjonov, I.V., Gonçalves, A.C., Hendrix, S., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
@@ -24,9 +24,9 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * See more detailed [statistics](https://stats.taxonworks.org/?server=sfg.taxonworks.org&project_token=ZEJhFp9sq8kBfks15qAbAg).
 
 ## Announcements
-* July 9, 2003 - [3i World Auchenorhyncha database](http://dmitriev.speciesfile.org) is first available online
-* November 15, 2018 - World Auchenorhyncha database is migrated from [3i](http://dmitriev.speciesfile.org) in [TaxonWorks](https://taxonworks.org)
-* September 15, 2022 - [World Auchenorhyncha database](https://hoppers.speciesfile.org) is available online with TaxonPages
+* July 9, 2003 - [3i World Auchenorrhyncha database](http://dmitriev.speciesfile.org) is first available online
+* November 15, 2018 - World Auchenorrhyncha database is migrated from [3i](http://dmitriev.speciesfile.org) in [TaxonWorks](https://taxonworks.org)
+* September 15, 2022 - [World Auchenorrhyncha database](https://hoppers.speciesfile.org) is available online with TaxonPages
 
 ## Team
  
@@ -61,7 +61,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 ## Collaboration
 Learn how to collaborate with the {{ frontmatter.project }} project. We need more people to update bibliography, distribution records, images, type material, interactive keys. You can work on your own research project within {{ frontmatter.project }}. The TaxonWorks interfaces used to curate these data include wide range of additional filtering, reporting, and curatorial functionality. 
 * Subscribe to the email listserv: [https://lists.illinois.edu/lists/info/auch-announce](https://lists.illinois.edu/lists/info/auch-announce)
-* We have weekly meeting about the Auchenorhyncha database and TaxonWorks on Wednesdays at 9:00AM US Central time or 15:00UTC.
+* We have weekly meeting about the Auchenorrhyncha database and TaxonWorks on Wednesdays at 9:00AM US Central time or 15:00UTC.
 
 ## Contact
 If you have a question, want to report new data relevant to the project, or have error our preferred means of contact is to file an issue on our [project tracker](https://github.com/sfg-taxonpages/hoppers/issues/new). You can also [chat live with us](https://gitter.im/SpeciesFileGroup/taxonworks), or contact us by email.
