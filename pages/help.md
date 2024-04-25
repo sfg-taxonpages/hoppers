@@ -2,7 +2,7 @@
 
 ## PUBLIC VIEW
 
-This public version of the World Auchenorhyncha Database presented by TaxonPages and curated in a TaxonWorks instance, displays an overview of the most relevant information of the database. The design in panels provides the option to download the data in DwC/CSV formats.
+This public version of the World Auchenorrhyncha Database presented by TaxonPages and curated in a TaxonWorks instance, displays an overview of the most relevant information of the database. The design in panels provides the option to download the data in DwC/CSV formats.
 A breadcrumb navigation was designed for taxonomy hierarchy, displayed on the top of each taxon page, and a tree browser for descendants and synonyms is displayed on the right.
 
 ## SMART SEARCH
