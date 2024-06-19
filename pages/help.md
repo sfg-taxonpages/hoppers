@@ -25,3 +25,7 @@ The green Search button on the upper right allows you to delimit an area to find
 **Asserted Distribution.** Refers to a geographic area for a taxon listed in a publication.
 
 **Collection Objects.** Correspond to specimens or series of specimens
+
+## TaxonWorks help files
+
+* <a href="../public/documents/Adding_images_to_the_World_Auchenorrhyncha_Database.pdf">Adding taxon images to the image matrix</a>
