@@ -5,7 +5,7 @@ project: World Auchenorrhyncha Database
 site_title: World Auchenorrhyncha Database
 site_address: https://hoppers.speciesfile.org
 authors_short: Dmitriev, D.A. et al.  
-authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gjonov, I.V., Gonçalves, A.C., Hendrix, S., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
+authors_list: Dmitriev, D.A., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gjonov, I.V., Gonçalves, A.C., Gonçalves, C.C., Hendrix, S., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
 
 # {{frontmatter.title}}
@@ -32,7 +32,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
  
 * [Dmitriev, Dmitry A.](https://orcid.org/0000-0002-3293-4794) - project manager, data curator
 * [Anufriev, Georgy A.](https://www.wikidata.org/wiki/Q27731478) - data provider
-* [Bartlett, Charles R.](https://orcid.org/0000-0001-9428-7337) - data provider
+* [Bartlett, Charles R.](https://orcid.org/0000-0001-9428-7337) - data curator
 * [Blanco-Rodríguez, Edith](https://orcid.org/0000-0001-5453-4102) - data curator 
 * [Borodin, Oleg I.](https://orcid.org/0000-0001-8907-2139) - data curator 
 * [Cao, Yang-Hui](https://orcid.org/0000-0002-0515-0767) - data provider
@@ -43,6 +43,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * [Evangelista de Souza, Olivia](https://orcid.org/0000-0001-8515-3548) - data provider
 * [Gjonov, Ilia V.](https://orcid.org/0000-0002-4239-9756) - data curator
 * Gonçalves, Ana Clara - data provider
+* [Gonçalves, Clayton Corrêa](https://orcid.org/0000-0003-3045-3425) - data curator
 * [Hendrix, Solomon](https://orcid.org/0000-0002-9564-1198) - data curator
 * [McKamey, Stuart](https://orcid.org/0000-0002-9617-0594) - data provider
 * [Kohler, Michelle](https://orcid.org/0000-0001-7185-4511) - data curator
