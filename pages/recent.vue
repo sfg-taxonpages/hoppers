@@ -72,6 +72,7 @@ async function loadSources() {
   try {
     const { data } = await makeAPIRequest.get('/sources', {
       params: {
+        in_project: true,
         recent: true,
         per: 10
       }
