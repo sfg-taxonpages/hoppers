@@ -74,6 +74,7 @@ async function loadSources() {
       params: {
         in_project: true,
         recent: true,
+        recent_target: 'created_at',
         per: 10
       }
     })
