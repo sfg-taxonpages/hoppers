@@ -59,6 +59,7 @@ async function loadTaxonNames() {
     const { data } = await makeAPIRequest.get('/taxon_names', {
       params: {
         validity: true,
+        recent_target: 'created_at',
         recent: true,
         per: 10
       }
