@@ -30,5 +30,6 @@ The green Search button on the upper right allows you to delimit an area to find
 
 * <a href="../documents/Adding_images_to_the_World_Auchenorrhyncha_Database.pdf">Adding taxon images to the image matrix</a>
 * <a href="../documents/Working_with_bibliography_in_the_World_Auchenorrhyncha_Database.pdf">Working with bibliography in the World Auchenorrhyncha Database</a>
+* <a href="../documents/Adding_type_specimen_to_a_species_in_the_World_Auchenorrhyncha_Database.pdf">Adding type specimen to a species in the World Auchenorrhyncha Database</a>
 
 * <a href="https://docs.taxonworks.org/guide/">TaxonWorks documentation</a>
