@@ -10,6 +10,7 @@ taxa_page:
               cluster: false
           - panel:type
           - panel:type-specimen
+          - panel:keys
           - panel:etymology
           - panel:content
           - panel:nomenclature-references
