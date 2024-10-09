@@ -19,7 +19,7 @@
         :attributes="{
           cached: 'Source'
         }"
-        route="/taxon_names"
+        route="/sources"
         :parameters="{
           in_project: true,
           recent: true,
