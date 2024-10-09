@@ -21,6 +21,16 @@
               </VTableBodyRow>
             </VTableBody>
           </VTable>
+          <VPagination
+            v-model="taxonPagination.page"
+            :total="taxonPagination.total"
+            :per="taxonPagination.per"
+            @update:modelValue="
+              (page) => {
+                loadTaxonNames(page)
+              }
+            "
+          />
         </VCardContent>
       </VCard>
 
@@ -41,6 +51,16 @@
               </VTableBodyRow>
             </VTableBody>
           </VTable>
+          <VPagination
+            v-model="sourcePagination.page"
+            :total="sourcePagination.total"
+            :per="sourcePagination.per"
+            @update:modelValue="
+              (page) => {
+                loadSources(page)
+              }
+            "
+          />
         </VCardContent>
       </VCard>
     </div>
@@ -51,37 +71,53 @@
 import { ref, onBeforeMount } from 'vue'
 import { makeAPIRequest } from '@/utils'
 
+const PER = 10
+
 const taxonNames = ref([])
 const sources = ref([])
+const sourcePagination = ref({ page: 0, total: 0, per: 0 })
+const taxonPagination = ref({ page: 0, total: 0, per: 0 })
 
-async function loadTaxonNames() {
+async function loadTaxonNames(page = 1) {
   try {
-    const { data } = await makeAPIRequest.get('/taxon_names', {
+    const { data, headers } = await makeAPIRequest.get('/taxon_names', {
       params: {
         validity: true,
-        recent_target: 'created_at',
         recent: true,
-        per: 10
+        recent_target: 'created_at',
+        per: PER,
+        page
       }
     })
 
+    taxonPagination.value = getPagination(headers)
     taxonNames.value = data
   } catch (e) {}
 }
 
-async function loadSources() {
+async function loadSources(page = 1) {
   try {
-    const { data } = await makeAPIRequest.get('/sources', {
+    const { data, headers } = await makeAPIRequest.get('/sources', {
       params: {
         in_project: true,
         recent: true,
         recent_target: 'created_at',
-        per: 10
+        per: PER,
+        page
       }
     })
 
+    sourcePagination.value = getPagination(headers)
     sources.value = data
   } catch (e) {}
+}
+
+function getPagination(headers) {
+  return {
+    page: Number(headers['pagination-page']),
+    per: Number(headers['pagination-per-page']),
+    total: Number(headers['pagination-total'])
+  }
 }
 
 onBeforeMount(() => {
