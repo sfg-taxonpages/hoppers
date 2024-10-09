@@ -2,12 +2,7 @@
   <div class="container mx-auto py-4">
     <h1 class="text-4xl font-bold">Recent</h1>
     <div class="flex flex-col gap-4 mt-4">
-      <RecentTable
-        :attributes="{
-          cached_html: 'Taxon name',
-          cached_author_year: 'Author'
-        }"
-        route="/taxon_names"
+      <RecentTaxonTable
         :parameters="{
           validity: true,
           recent: true,
@@ -35,4 +30,5 @@
 
 <script setup>
 import RecentTable from './components/RecentTable.vue'
+import RecentTaxonTable from './components/RecentTaxonTable.vue'
 </script>
