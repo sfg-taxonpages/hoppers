@@ -11,8 +11,8 @@
         :parameters="{
           validity: true,
           recent: true,
-          taxon_name_id%5B%5D: 330629,
-          descendants, true,
+          taxon_name_id: [330629],
+          descendants: true,
           taxon_name_type: 'Protonym',
           recent_target: 'created_at'
         }"
