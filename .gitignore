@@ -6,5 +6,6 @@
 !public
 !panels
 !panels/**
+!public/**
 !README.md
 config/**/*.development.yml
