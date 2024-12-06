@@ -5,7 +5,7 @@ project: World Auchenorrhyncha Database
 site_title: World Auchenorrhyncha Database
 site_address: https://hoppers.speciesfile.org
 authors_short: Dmitriev, D.A. et al.  
-authors_list: Dmitriev, D.A., Angelova, R., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gjonov, I.V., Gonçalves, A.C., Gonçalves, C.C., Hendrix, S.V., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
+authors_list: Dmitriev, D.A., Angelova, R., Anufriev, G.A., Bartlett, C.R., Blanco-Rodríguez, E., Borodin, O.I., Cao, Y.-H., Cara, C., Deitz, L.L., Dietrich, C.H., Dmitrieva, M.O., El-Sonbati, S.A., Evangelista de Souza, O., Gjonov, I.V., Gonçalves, A.C., Gonçalves, C.C., Hendrix, S.V., McKamey, S., Kohler, M., Kunz, G., Malenovský, I., Morris, B.O., Novoselova, M., Pinedo-Escatel, J.A., Rakitov, R.A., Rothschild, M.J., Sanborn, A.F., Takiya, D.M., Wallace, M.S., Zahniser, J.N. 
 ---
 
 # {{frontmatter.title}}
@@ -37,6 +37,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * [Blanco-Rodríguez, Edith](https://orcid.org/0000-0001-5453-4102) - data curator 
 * [Borodin, Oleg Igorevich](https://orcid.org/0000-0001-8907-2139) - data curator 
 * [Cao, Yang-Hui](https://orcid.org/0000-0002-0515-0767) - data provider
+* Cara, Corrado - data curator  
 * [Deitz, Lewis L.](https://orcid.org/0000-0002-8727-9379) - data provider 
 * [Dietrich, Christopher Hallock](https://orcid.org/0000-0003-4005-4305) - data curator 
 * Dmitrieva, Margarita Olegovna - data curator
