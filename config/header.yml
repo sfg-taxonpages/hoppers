@@ -5,6 +5,9 @@ header_links:
   - label: Home
     link: /
 
+  - label: Bibliography
+    link: /bibliography
+
   - label: About
     link: /about
 
