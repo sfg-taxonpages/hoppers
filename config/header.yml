@@ -8,11 +8,11 @@ header_links:
   - label: Bibliography
     link: /bibliography
 
-  - label: About
-    link: /about
-
   - label: Recent
     link: /recent
+
+  - label: About
+    link: /about
 
   - label: Help
     link: /help
