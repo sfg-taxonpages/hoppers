@@ -19,6 +19,10 @@ taxa_page:
     rank_group: ['SpeciesGroup']
     panels:
       - - - panel:specimen-records
+  field_occurrences:
+    rank_group: ['SpeciesGroup']
+    panels:
+      - - - panel:field-occurrences
   biological_associations:
     panels:
       - - - panel:biological-associations
