@@ -6,7 +6,7 @@ header_links:
     link: /
 
   - label: Bibliography
-    link: /resources/tw/filter/bibligraphy
+    link: /resources/tw/filter/bibliography
 
   - label: Search DwC
     link: /resources/tw/filter/dwc_otus
