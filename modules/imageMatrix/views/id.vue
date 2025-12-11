@@ -1,5 +1,9 @@
 <template>
   <VCard class="container mx-auto">
+    <VSpinner
+      v-if="isLoading"
+      full-screen
+    />
     <VCardHeader>{{ observationMatrix.name }}</VCardHeader>
     <VCardContent>
       <div class="image-matrix overflow-auto">
@@ -41,6 +45,7 @@ import { makeAPIRequest } from '@/utils'
 import { useRoute } from 'vue-router'
 
 const list = ref([])
+const isLoading = ref(true)
 const descriptors = ref([])
 const observationMatrix = ref({})
 const route = useRoute()
@@ -71,6 +76,10 @@ makeAPIRequest
 
       return obj
     })
+  })
+  .catch(() => {})
+  .finally(() => {
+    isLoading.value = false
   })
 </script>
 
