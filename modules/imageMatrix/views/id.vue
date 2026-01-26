@@ -4,17 +4,32 @@
       v-if="isLoading"
       full-screen
     />
-    <VCardHeader>{{ observationMatrix.name }}</VCardHeader>
+    <VCardHeader>
+      <div class="flex flex-row justify-between items-center">
+        <h1>{{ observationMatrix.name }}</h1>
+        <VPagination
+          v-if="pagination"
+          :total="pagination.total"
+          v-model="pagination.page"
+          :per="PER"
+          @select="(page) => loadMatrix(matrixId, page)"
+        />
+      </div>
+    </VCardHeader>
     <VCardContent>
       <div class="image-matrix overflow-auto">
         <VTable>
+          <caption class="sr-only">
+            Image matrix
+          </caption>
           <VTableHeader>
             <VTableHeaderRow class="bg-base-foreground">
-              <VTableHeaderCell class="border-b" />
+              <VTableBodyCell class="border-b" />
               <VTableHeaderCell
                 v-for="{ id, label } in descriptors"
                 :key="id"
                 class="border-l border-b"
+                scope="col"
               >
                 {{ label }}
               </VTableHeaderCell>
@@ -22,16 +37,17 @@
           </VTableHeader>
           <VTableBody>
             <VTableBodyRow v-for="item in list">
-              <VTableBodyCell
-                class="border-b text-base-content h-20"
-                v-html="item.label"
-              >
+              <VTableBodyCell class="border-b text-base-content h-20">
+                <RouterLink
+                  :to="{ name: 'otus-id', params: { id: item.id } }"
+                  v-html="item.label"
+                />
               </VTableBodyCell>
               <VTableBodyCell
-                v-for="arr in item.depictions"
+                v-for="images in item.depictions"
                 class="border-l border-b"
               >
-                <ListImage :images="arr.map(makeImageObject)" />
+                <ListImage :images="images" />
               </VTableBodyCell>
             </VTableBodyRow>
           </VTableBody>
@@ -48,43 +64,71 @@ import { useRoute } from 'vue-router'
 import { makeImageObject } from '../utils/makeImageObject.js'
 import ListImage from '../components/ListImages.vue'
 
+const PER = 50
+
 const list = ref([])
-const isLoading = ref(true)
+const isLoading = ref(false)
 const descriptors = ref([])
 const observationMatrix = ref({})
 const route = useRoute()
+const pagination = ref()
 
-makeAPIRequest
-  .get(`/observation_matrices/${route.params.id}/image_matrix`)
-  .then(({ data }) => {
+const matrixId = route.params.id
+
+async function loadMatrix(id, page = 1) {
+  isLoading.value = true
+
+  try {
+    const { data } = await makeAPIRequest.get(
+      `/observation_matrices/${id}/image_matrix`,
+      {
+        params: {
+          page,
+          per: PER
+        }
+      }
+    )
+
     observationMatrix.value = data.observation_matrix
     descriptors.value = data.list_of_descriptors.map((item) => ({
       label: item.name,
       id: item.id
     }))
 
+    pagination.value = {
+      page: data.pagination.pagination_page,
+      total: data.pagination.pagination_total,
+      per: data.pagination.pagination_per_page
+    }
+
     list.value = data.depiction_matrix.map((item) => {
       const obj = {
+        id: item.object.id,
+        type: item.object.type,
         label: item.object.label,
         depictions: []
       }
 
       for (let i = 0; i < descriptors.value.length; i++) {
-        const depictions = item.depictions[i].map((d) => ({
-          ...d,
-          ...data.image_hash[d.image_id]
-        }))
+        const depictions = item.depictions[i].map((d) =>
+          makeImageObject({
+            ...d,
+            ...data.image_hash[d.image_id]
+          })
+        )
 
         obj.depictions.push(depictions)
       }
 
       return obj
     })
-  })
-  .catch(() => {})
-  .finally(() => {
+  } catch {
+  } finally {
     isLoading.value = false
-  })
+  }
+}
+
+loadMatrix(route.params.id)
 </script>
 
 <style scoped>
