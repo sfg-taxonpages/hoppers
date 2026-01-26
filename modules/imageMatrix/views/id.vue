@@ -10,11 +10,11 @@
         <VTable>
           <VTableHeader>
             <VTableHeaderRow class="bg-base-foreground">
-              <VTableHeaderCell />
+              <VTableHeaderCell class="border-b" />
               <VTableHeaderCell
                 v-for="{ id, label } in descriptors"
                 :key="id"
-                class="border-l"
+                class="border-l border-b"
               >
                 {{ label }}
               </VTableHeaderCell>
@@ -22,14 +22,16 @@
           </VTableHeader>
           <VTableBody>
             <VTableBodyRow v-for="item in list">
-              <VTableBodyCell v-html="item.label"> </VTableBodyCell>
+              <VTableBodyCell
+                class="border-b text-base-content h-20"
+                v-html="item.label"
+              >
+              </VTableBodyCell>
               <VTableBodyCell
                 v-for="arr in item.depictions"
-                class="border-l"
+                class="border-l border-b"
               >
-                <div v-for="d in arr">
-                  <img :src="d.image.thumb" />
-                </div>
+                <ListImage :images="arr.map(makeImageObject)" />
               </VTableBodyCell>
             </VTableBodyRow>
           </VTableBody>
@@ -43,6 +45,8 @@
 import { ref } from 'vue'
 import { makeAPIRequest } from '@/utils'
 import { useRoute } from 'vue-router'
+import { makeImageObject } from '../utils/makeImageObject.js'
+import ListImage from '../components/ListImages.vue'
 
 const list = ref([])
 const isLoading = ref(true)
