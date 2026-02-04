@@ -1,3 +1,7 @@
+permissions:
+  contents: write
+  issues: write
+  
 name: Check iNaturalist Flags (descendants)
 
 on:
