@@ -29,16 +29,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests beautifulsoup4
 
-      # ---- HARD SAFETY CHECK ----
-      # Ensures no old descendants code is still present
-      - name: Verify no /children endpoint is used anywhere
+      # ---- SAFETY CHECK ----
+      # Ensures no old broken iNat endpoint is still present anywhere
+      - name: Verify no deprecated iNat /v1/taxa/<id>/children endpoint is used
         run: |
-          echo "Checking for forbidden /children usage…"
-          if grep -RIn "/children|taxa/.*children" scripts .github/workflows; then
-            echo "ERROR: Found deprecated /children usage above."
+          echo "Checking for deprecated iNat endpoint: api.inaturalist.org/v1/taxa/<id>/children …"
+          if grep -RIn "api\.inaturalist\.org/v1/taxa/.*/children" scripts .github/workflows; then
+            echo "ERROR: Found deprecated iNat /children endpoint usage above."
             exit 1
           else
-            echo "OK: No /children usage found."
+            echo "OK: No deprecated iNat /children endpoint usage found."
           fi
 
       - name: Run iNaturalist flag checker (flags index)
