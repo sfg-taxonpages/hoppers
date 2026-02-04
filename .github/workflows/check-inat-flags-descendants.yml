@@ -28,8 +28,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # set comma-separated root taxon ids you want to monitor
-          INAT_ROOT_TAXON_IDS: "129714,64070"
-          USER_AGENT: "inat-flag-watcher/1.0 (contact: your-email@example.com)"
+          INAT_ROOT_TAXON_IDS: "125816"
+          USER_AGENT: "inat-flag-watcher/1.0 (contact: arboridia@gmail.com)"
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
           python scripts/check_inat_flags_descendants.py
