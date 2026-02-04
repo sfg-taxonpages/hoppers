@@ -1,5 +1,10 @@
-import os, json, time, random, re
+import os
+import json
+import time
+import random
+import re
 from typing import Dict, List, Set, Optional
+
 import requests
 
 USER_AGENT = os.environ.get("USER_AGENT", "inat-flag-watcher/1.0 (contact: your-email@example.com)")
@@ -34,8 +39,14 @@ HEADERS = {
     "Connection": "keep-alive",
 }
 
+# Heuristics: look for embedded API hints when HTML is an "app shell"
+XHR_HINT_RE = re.compile(r"""https://api\.inaturalist\.org/[^\s"'<>]+""")
+INAT_PATH_HINT_RE = re.compile(r"""/[a-z0-9_\-/]+\.json\b""", re.IGNORECASE)
+
+
 def _sleep(base: float) -> None:
     time.sleep(max(0.0, base + random.uniform(0.0, JITTER)))
+
 
 def http_get(session: requests.Session, url: str, params: dict, timeout: int = 30) -> requests.Response:
     backoff = HTTP_BACKOFF_BASE
@@ -57,6 +68,7 @@ def http_get(session: requests.Session, url: str, params: dict, timeout: int = 3
             backoff *= 2
     raise RuntimeError(f"GET failed after retries: {last_exc}")
 
+
 def load_seen() -> Set[str]:
     if os.path.exists(SEEN_FILE):
         try:
@@ -68,11 +80,13 @@ def load_seen() -> Set[str]:
             return set()
     return set()
 
+
 def save_seen(seen_set: Set[str]) -> None:
     tmp = SEEN_FILE + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(sorted(list(seen_set)), f, indent=2)
     os.replace(tmp, SEEN_FILE)
+
 
 def create_github_issue(title: str, body: str) -> Dict:
     url = f"https://api.github.com/repos/{GITHUB_REPO}/issues"
@@ -86,9 +100,10 @@ def create_github_issue(title: str, body: str) -> Dict:
     r.raise_for_status()
     return r.json()
 
+
 def build_flags_params(root_taxon_id: str, page: int) -> dict:
+    # IMPORTANT: omit utf8 checkmark; Rails doesn't need it and it can be noisy.
     params = {
-        "utf8": "✓",
         "flaggable_type": "Taxon",
         "taxon_id": str(root_taxon_id),
         "deleted": DELETED,
@@ -100,9 +115,33 @@ def build_flags_params(root_taxon_id: str, page: int) -> dict:
         params["flags[]"] = FLAG_TYPES
     return params
 
+
 def extract_flag_ids(html: str) -> List[str]:
     ids = {m.group(1) for m in FLAG_ID_RE.finditer(html)}
     return sorted(ids, key=int)
+
+
+def diagnose_shell_html(html: str) -> None:
+    """
+    When /flags/<id> isn't present, try to surface likely XHR/API hints to help switch to a direct endpoint.
+    """
+    api_hints = sorted(set(XHR_HINT_RE.findall(html)))[:10]
+    path_hints = sorted(set(INAT_PATH_HINT_RE.findall(html)))[:10]
+
+    print("[DEBUG] No /flags/<id> found in HTML. Likely app-shell or blocked content.")
+    print("[DEBUG] api.inaturalist.org hints found:", len(api_hints))
+    for u in api_hints:
+        print("  [HINT]", u)
+
+    print("[DEBUG] *.json path hints found:", len(path_hints))
+    for p in path_hints:
+        print("  [HINT]", p)
+
+    # also show if it's the generic react shell
+    markers = ["__NEXT_DATA__", "react", "application/json", "webpack", "data-reactroot"]
+    present = [m for m in markers if m.lower() in html.lower()]
+    print("[DEBUG] shell markers present:", present)
+
 
 def main() -> None:
     if not ROOT_TAXON_IDS:
@@ -137,7 +176,11 @@ def main() -> None:
                 print("[DEBUG] contains '/flags/' ?", ("/flags/" in html))
 
             flag_ids = extract_flag_ids(html)
+
+            # If page has no /flags/<id>, diagnose and stop (no point paging)
             if not flag_ids:
+                if page == 1:
+                    diagnose_shell_html(html)
                 print(f"[INFO] No flags on page {page}; stop.")
                 break
 
@@ -145,9 +188,11 @@ def main() -> None:
             for fid in flag_ids:
                 if fid in seen:
                     continue
+
                 link = f"https://www.inaturalist.org/flags/{fid}"
                 title = f"iNaturalist taxon flag (root {root}): Flag {fid}"
                 body = f"- Root taxon: `{root}`\n- Flag ID: `{fid}`\n- Link: {link}\n"
+
                 try:
                     issue = create_github_issue(title, body)
                     print("[INFO] Created issue:", issue.get("html_url"))
@@ -166,6 +211,7 @@ def main() -> None:
 
     save_seen(new_seen)
     print(f"[INFO] Done. new_issues={created}, seen_total={len(new_seen)}")
+
 
 if __name__ == "__main__":
     main()
