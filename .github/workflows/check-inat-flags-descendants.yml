@@ -36,7 +36,7 @@ jobs:
           USER_AGENT: "inat-flag-watcher/1.0 (contact: arboridia@gmail.com)"
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: |
-          python scripts/check_inat_flags_descendants.py
+          python scripts/check_inat_flags_index.py
 
       - name: Commit seen_flags.json if changed
         run: |
