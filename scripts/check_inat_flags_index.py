@@ -1,28 +1,15 @@
 # scripts/check_inat_flags_index.py
-"""
-Monitor iNaturalist TAXON flags for a root taxon (descendants included by iNat's flags search),
-by paging the flags index page you already use in the browser.
-
-- Fetches https://www.inaturalist.org/flags with your filters
-- Pages through results
-- Extracts numeric /flags/<id> links (flag IDs)
-- Creates a GitHub issue for each NEW flag ID
-- Persists seen IDs in seen_flags.json
-- Uses retry/backoff and only marks "seen" after successful issue creation
-"""
 
 import os
 import json
 import time
 import random
+import re
 from typing import Dict, List, Set, Optional
 
 import requests
 from bs4 import BeautifulSoup
 
-# ----------------------------
-# Configuration (env vars)
-# ----------------------------
 USER_AGENT = os.environ.get("USER_AGENT", "inat-flag-watcher/1.0 (contact: your-email@example.com)")
 GITHUB_REPO = os.environ.get("GITHUB_REPOSITORY")  # "org/repo"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
@@ -39,17 +26,22 @@ FLAG_TYPES_RAW = os.environ.get("INAT_FLAG_TYPES", "inappropriate,other")
 FLAG_TYPES = [x.strip() for x in FLAG_TYPES_RAW.split(",") if x.strip()]
 
 # Pagination / politeness
-PER_PAGE = int(os.environ.get("INAT_PER_PAGE", "200"))     # may be ignored by UI; harmless
 MAX_PAGES = int(os.environ.get("INAT_MAX_PAGES", "50"))     # safety cap
 SLEEP_PAGES = float(os.environ.get("SLEEP_PAGES", "0.8"))
 JITTER = float(os.environ.get("JITTER", "0.2"))
 
-# HTTP retry policy
 HTTP_RETRIES = int(os.environ.get("HTTP_RETRIES", "4"))
 HTTP_BACKOFF_BASE = float(os.environ.get("HTTP_BACKOFF_BASE", "1.0"))
 
-HEADERS = {"User-Agent": USER_AGENT}
 FLAGS_URL = "https://www.inaturalist.org/flags"
+
+HEADERS = {
+    "User-Agent": USER_AGENT,
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+FLAG_ID_RE = re.compile(r"/flags/(\d+)\b")
 
 
 def _sleep_with_jitter(base: float) -> None:
@@ -63,6 +55,7 @@ def http_get(url: str, *, params: Optional[dict] = None, timeout: int = 30) -> r
         try:
             r = requests.get(url, params=params, headers=HEADERS, timeout=timeout)
             r.raise_for_status()
+            print("[DEBUG] GET OK:", r.url)  # important: confirm we really hit /flags?... with your params
             return r
         except Exception as e:
             last_exc = e
@@ -126,13 +119,13 @@ def create_github_issue(title: str, body: str) -> Dict:
 
 
 def build_flags_params(root_taxon_id: str, page: int) -> dict:
+    # Match your working browser URL pattern more closely
     params = {
         "utf8": "✓",
         "flaggable_type": "Taxon",
         "taxon_id": str(root_taxon_id),
-        "taxon_name": "",            # optional; UI had "True Hoppers" but taxon_id is enough
-        "resolved": RESOLVED,        # "no"
-        "deleted": DELETED,          # "any"
+        "deleted": DELETED,
+        "resolved": RESOLVED,
         "page": page,
         "commit": "Filter",
     }
@@ -140,23 +133,26 @@ def build_flags_params(root_taxon_id: str, page: int) -> dict:
         params["flags[]"] = FLAG_TYPES
     return params
 
-def parse_flag_ids(html: str) -> List[Dict[str, str]]:
+
+def extract_flag_ids(html: str) -> List[str]:
+    """
+    Robust extraction: first try anchors, then regex fallback (covers JS-rendered / data attributes).
+    """
+    ids: Set[str] = set()
+
+    # 1) anchor-based
     soup = BeautifulSoup(html, "html.parser")
-    found: Dict[str, Dict[str, str]] = {}
-
-    # 1) normal links like /flags/12345
     for a in soup.find_all("a", href=True):
-        href = a["href"]
-        if "/flags/" not in href:
-            continue
-        fid = href.split("/flags/")[-1].split("#")[0].split("?")[0].strip()
-        if not fid.isdigit():
-            continue
-        link = "https://www.inaturalist.org" + href.split("#")[0]
-        title = a.get_text(" ", strip=True) or f"Flag {fid}"
-        found[fid] = {"id": fid, "link": link, "title": title}
+        m = FLAG_ID_RE.search(a["href"])
+        if m:
+            ids.add(m.group(1))
 
-    return list(found.values())
+    # 2) regex anywhere in HTML (this is the key fix)
+    for m in FLAG_ID_RE.finditer(html):
+        ids.add(m.group(1))
+
+    return sorted(ids, key=int)
+
 
 def main() -> None:
     if not ROOT_TAXON_IDS:
@@ -177,26 +173,29 @@ def main() -> None:
         for page in range(1, MAX_PAGES + 1):
             params = build_flags_params(root, page)
             html = http_get(FLAGS_URL, params=params).text
+
+            # keep your debug
             if page == 1:
                 print("[DEBUG] fetched html length:", len(html))
-                print("[DEBUG] first 300 chars:", html[:300].replace("\n", " ") )
-            flags = parse_flag_ids(html)
+                print("[DEBUG] first 200 chars:", html[:200].replace("\n", " "))
 
-            if not flags:
-                print(f"[INFO] No flags on page {page}; stop.")
+            flag_ids = extract_flag_ids(html)
+
+            if not flag_ids:
+                print(f"[INFO] No flags found on page {page}; stop.")
                 break
 
             new_on_page = 0
-            for f in flags:
-                fid = f["id"]
+            for fid in flag_ids:
                 if fid in seen:
                     continue
 
-                title = f"iNaturalist taxon flag (root {root}): {f['title']}"
+                link = f"https://www.inaturalist.org/flags/{fid}"
+                title = f"iNaturalist taxon flag (root {root}): Flag {fid}"
                 body = (
                     f"- Root taxon: `{root}`\n"
                     f"- Flag ID: `{fid}`\n"
-                    f"- Link: {f['link']}\n"
+                    f"- Link: {link}\n"
                 )
 
                 try:
@@ -213,7 +212,6 @@ def main() -> None:
             else:
                 pages_no_new = 0
 
-            # stop early once we're into already-seen history
             if pages_no_new >= 2:
                 print("[INFO] Two consecutive pages with no new flags; stop.")
                 break
