@@ -127,35 +127,36 @@ def create_github_issue(title: str, body: str) -> Dict:
 
 def build_flags_params(root_taxon_id: str, page: int) -> dict:
     params = {
+        "utf8": "✓",
         "flaggable_type": "Taxon",
         "taxon_id": str(root_taxon_id),
-        "resolved": RESOLVED,
-        "deleted": DELETED,
+        "taxon_name": "",            # optional; UI had "True Hoppers" but taxon_id is enough
+        "resolved": RESOLVED,        # "no"
+        "deleted": DELETED,          # "any"
         "page": page,
-        "per_page": PER_PAGE,
+        "commit": "Filter",
     }
     if FLAG_TYPES:
-        params["flags[]"] = FLAG_TYPES  # repeated query params
+        params["flags[]"] = FLAG_TYPES
     return params
-
 
 def parse_flag_ids(html: str) -> List[Dict[str, str]]:
     soup = BeautifulSoup(html, "html.parser")
     found: Dict[str, Dict[str, str]] = {}
 
-    for a in soup.select("a[href*='/flags/']"):
-        href = (a.get("href") or "").strip()
+    # 1) normal links like /flags/12345
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
         if "/flags/" not in href:
             continue
         fid = href.split("/flags/")[-1].split("#")[0].split("?")[0].strip()
         if not fid.isdigit():
             continue
         link = "https://www.inaturalist.org" + href.split("#")[0]
-        title = a.get_text(strip=True) or f"Flag {fid}"
+        title = a.get_text(" ", strip=True) or f"Flag {fid}"
         found[fid] = {"id": fid, "link": link, "title": title}
 
     return list(found.values())
-
 
 def main() -> None:
     if not ROOT_TAXON_IDS:
@@ -176,6 +177,9 @@ def main() -> None:
         for page in range(1, MAX_PAGES + 1):
             params = build_flags_params(root, page)
             html = http_get(FLAGS_URL, params=params).text
+            if page == 1:
+                print("[DEBUG] fetched html length:", len(html))
+                print("[DEBUG] first 300 chars:", html[:300].replace("\n", " ") )
             flags = parse_flag_ids(html)
 
             if not flags:
