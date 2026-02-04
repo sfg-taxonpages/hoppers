@@ -1,0 +1,47 @@
+name: Check iNaturalist Flags (descendants)
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'   # every 15 minutes — tune as needed
+  workflow_dispatch:
+
+jobs:
+  check-flags:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4
+
+      - name: Run iNaturalist flag checker (descendants)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # set comma-separated root taxon ids you want to monitor
+          INAT_ROOT_TAXON_IDS: "129714,64070"
+          USER_AGENT: "inat-flag-watcher/1.0 (contact: your-email@example.com)"
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          python scripts/check_inat_flags_descendants.py
+
+      - name: Commit seen_flags.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add seen_flags.json || true
+          if ! git diff --staged --quiet; then
+            git commit -m "Update seen flags (automated)"
+            git push
+          else
+            echo "No changes to commit"
+          fi
