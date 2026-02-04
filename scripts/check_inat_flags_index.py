@@ -5,9 +5,10 @@ by paging the flags index page you already use in the browser.
 
 - Fetches https://www.inaturalist.org/flags with your filters
 - Pages through results
-- Extracts numeric /flags/<id> links
-- Creates a GitHub issue for each new flag ID
+- Extracts numeric /flags/<id> links (flag IDs)
+- Creates a GitHub issue for each NEW flag ID
 - Persists seen IDs in seen_flags.json
+- Uses retry/backoff and only marks "seen" after successful issue creation
 """
 
 import os
@@ -19,6 +20,9 @@ from typing import Dict, List, Set, Optional
 import requests
 from bs4 import BeautifulSoup
 
+# ----------------------------
+# Configuration (env vars)
+# ----------------------------
 USER_AGENT = os.environ.get("USER_AGENT", "inat-flag-watcher/1.0 (contact: your-email@example.com)")
 GITHUB_REPO = os.environ.get("GITHUB_REPOSITORY")  # "org/repo"
 GITHUB_TOKEN = os.environ.get("GITHUB_TOKEN")
@@ -40,6 +44,7 @@ MAX_PAGES = int(os.environ.get("INAT_MAX_PAGES", "50"))     # safety cap
 SLEEP_PAGES = float(os.environ.get("SLEEP_PAGES", "0.8"))
 JITTER = float(os.environ.get("JITTER", "0.2"))
 
+# HTTP retry policy
 HTTP_RETRIES = int(os.environ.get("HTTP_RETRIES", "4"))
 HTTP_BACKOFF_BASE = float(os.environ.get("HTTP_BACKOFF_BASE", "1.0"))
 
@@ -184,7 +189,12 @@ def main() -> None:
                     continue
 
                 title = f"iNaturalist taxon flag (root {root}): {f['title']}"
-                body = f"- Root taxon: `{root}`\n- Flag ID: `{fid}`\n- Link: {f['link']}\n"
+                body = (
+                    f"- Root taxon: `{root}`\n"
+                    f"- Flag ID: `{fid}`\n"
+                    f"- Link: {f['link']}\n"
+                )
+
                 try:
                     issue = create_github_issue(title, body)
                     print("[INFO] Created issue:", issue.get("html_url"))
