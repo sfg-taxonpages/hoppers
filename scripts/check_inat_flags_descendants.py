@@ -8,6 +8,10 @@ Designed for large clades (up to ~50k taxa):
 - Polls the public flags pages for each cached taxon ID (https://www.inaturalist.org/flags?taxon_id=...)
 - Creates GitHub issues for new flags and saves seen flag IDs in seen_flags.json
 - Robust seen-file handling, numeric flag ID filtering, retry/backoff, and "only mark seen on success"
+
+Scaling additions:
+- Sharding support via SHARD_COUNT + SHARD_INDEX (so 50k taxa can be split across jobs/runs)
+- MAX_TAXA_PER_RUN applied after sharding (optional cap per job/run)
 """
 
 import os
@@ -15,7 +19,7 @@ import json
 import time
 import random
 import datetime as dt
-from typing import Dict, List, Set, Tuple, Optional
+from typing import Dict, List, Set, Optional
 
 import requests
 from bs4 import BeautifulSoup
@@ -45,7 +49,11 @@ PER_PAGE = int(os.environ.get("INAT_PER_PAGE", "200"))
 SLEEP_CHILDREN = float(os.environ.get("SLEEP_CHILDREN", "0.2"))      # delay between children page fetches
 SLEEP_FLAGS = float(os.environ.get("SLEEP_FLAGS", "0.3"))            # delay between flags page fetches
 JITTER = float(os.environ.get("JITTER", "0.15"))                     # random jitter to avoid thundering herd
-MAX_TAXA_PER_RUN = int(os.environ.get("MAX_TAXA_PER_RUN", "0"))       # 0 = no limit; set to cap work per run
+MAX_TAXA_PER_RUN = int(os.environ.get("MAX_TAXA_PER_RUN", "0"))      # 0 = no limit; cap per run/job
+
+# Sharding (scale across multiple jobs/runs)
+SHARD_COUNT = int(os.environ.get("SHARD_COUNT", "1"))                # 1 = no sharding
+SHARD_INDEX = int(os.environ.get("SHARD_INDEX", "0"))                # 0..SHARD_COUNT-1
 
 # Cache refresh policy
 CACHE_TTL_HOURS = int(os.environ.get("CACHE_TTL_HOURS", "24"))        # refresh descendants list every 24h
@@ -88,7 +96,6 @@ def http_post(url: str, *, json_payload: dict, headers: dict, timeout: int = 30)
             return r
         except Exception as e:
             last_exc = e
-            # Print response body when available (useful for GitHub 403/422)
             resp_text = ""
             try:
                 if isinstance(e, requests.HTTPError) and e.response is not None:
@@ -112,12 +119,10 @@ def load_seen() -> Set[str]:
                 return set(str(x) for x in data)
             return set()
         except Exception:
-            # tolerate empty/partial/corrupt file
             return set()
     return set()
 
 def save_seen(seen_set: Set[str]) -> None:
-    # atomic-ish write: write temp then replace
     tmp = SEEN_FILE + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(sorted(list(seen_set)), f, indent=2)
@@ -139,11 +144,7 @@ def load_desc_cache() -> Optional[Dict]:
         return None
 
 def save_desc_cache(root_id: str, taxon_ids: List[str]) -> None:
-    cache = {
-        "root_id": str(root_id),
-        "updated_at": _now_iso(),
-        "taxon_ids": taxon_ids,
-    }
+    cache = {"root_id": str(root_id), "updated_at": _now_iso(), "taxon_ids": taxon_ids}
     tmp = DESC_CACHE_FILE + ".tmp"
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(cache, f, indent=2)
@@ -154,7 +155,6 @@ def cache_is_fresh(cache: Dict) -> bool:
         updated_at = cache.get("updated_at")
         if not updated_at:
             return False
-        # parse ISO like "2026-02-04T12:34:56Z"
         t = dt.datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%SZ")
         age = dt.datetime.utcnow() - t
         return age.total_seconds() <= CACHE_TTL_HOURS * 3600
@@ -172,9 +172,6 @@ def get_children(parent_id: str, page: int) -> List[dict]:
     return data.get("results", []) or []
 
 def get_descendant_taxa_bfs(root_taxon_id: str) -> Set[str]:
-    """
-    BFS over /taxa/{id}/children to collect root + all descendants.
-    """
     root_taxon_id = str(root_taxon_id)
     ids: Set[str] = {root_taxon_id}
     queue: List[str] = [root_taxon_id]
@@ -203,7 +200,6 @@ def get_descendant_taxa_bfs(root_taxon_id: str) -> Set[str]:
             page += 1
             _sleep_with_jitter(SLEEP_CHILDREN)
 
-        # light progress output
         if seen_parents % 250 == 0:
             print(f"[INFO] Descendants: visited parents={seen_parents}, collected taxa={len(ids)}")
 
@@ -212,10 +208,6 @@ def get_descendant_taxa_bfs(root_taxon_id: str) -> Set[str]:
     return ids
 
 def get_descendants_cached_for_root(root_id: str) -> List[str]:
-    """
-    Loads descendants list from cache if fresh and matches root_id; otherwise recomputes and saves cache.
-    Cache file is shared (single-root) by default; if you monitor multiple roots, it will be rebuilt per root.
-    """
     cache = load_desc_cache()
     if cache and str(cache.get("root_id")) == str(root_id) and cache_is_fresh(cache):
         taxon_ids = cache.get("taxon_ids") or []
@@ -238,10 +230,6 @@ def fetch_flags_for_taxon(taxon_id: str) -> str:
     return r.text
 
 def parse_flags(html: str) -> List[Dict[str, str]]:
-    """
-    Extract flags as dicts {'id','title','link'}.
-    Filters to numeric IDs only to reduce false positives.
-    """
     soup = BeautifulSoup(html, "html.parser")
     results: List[Dict[str, str]] = []
 
@@ -258,7 +246,6 @@ def parse_flags(html: str) -> List[Dict[str, str]]:
         link = "https://www.inaturalist.org" + href.split("#")[0]
         results.append({"id": fid, "title": text, "link": link})
 
-    # dedupe by flag id
     dedup: Dict[str, Dict[str, str]] = {}
     for r in results:
         dedup[r["id"]] = r
@@ -289,11 +276,14 @@ def main() -> None:
         print("GITHUB_REPOSITORY and GITHUB_TOKEN environment variables are required.")
         return
 
+    if SHARD_COUNT < 1:
+        raise ValueError("SHARD_COUNT must be >= 1")
+    if not (0 <= SHARD_INDEX < SHARD_COUNT):
+        raise ValueError("SHARD_INDEX must be in [0, SHARD_COUNT)")
+
     seen = load_seen()
     new_seen = set(seen)
 
-    # For large clades, cache descendants; rebuild at most once per TTL.
-    # If multiple roots are provided, we rebuild cache per root (single cache file).
     all_taxon_ids: List[str] = []
     for root in ROOT_TAXON_IDS:
         try:
@@ -315,8 +305,13 @@ def main() -> None:
     total_taxa = len(unique_taxa)
     print(f"[INFO] Monitoring flags for {total_taxa} taxa total (across roots).")
 
-    # Optional cap per run (useful for huge sets; run more frequently or shard by schedule)
-    if MAX_TAXA_PER_RUN and total_taxa > MAX_TAXA_PER_RUN:
+    # Shard BEFORE optional cap
+    if SHARD_COUNT > 1:
+        unique_taxa = [tid for i, tid in enumerate(unique_taxa) if (i % SHARD_COUNT) == SHARD_INDEX]
+        print(f"[INFO] Shard {SHARD_INDEX}/{SHARD_COUNT}: {len(unique_taxa)} taxa")
+
+    # Optional cap per run/job (applied after sharding)
+    if MAX_TAXA_PER_RUN and len(unique_taxa) > MAX_TAXA_PER_RUN:
         unique_taxa = unique_taxa[:MAX_TAXA_PER_RUN]
         print(f"[INFO] MAX_TAXA_PER_RUN set; limiting this run to {len(unique_taxa)} taxa.")
 
@@ -351,7 +346,6 @@ def main() -> None:
                 except Exception as e:
                     print(f"[ERROR] Failed to create issue for flag {fid}: {e}")
 
-            # progress
             if checked_count % 250 == 0:
                 print(f"[INFO] Progress: checked taxa={checked_count}/{len(unique_taxa)}, new issues={created_count}")
 
