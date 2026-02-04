@@ -1,9 +1,9 @@
+name: Check iNaturalist Flags (descendants)
+
 permissions:
   contents: write
   issues: write
   
-name: Check iNaturalist Flags (descendants)
-
 on:
   schedule:
     - cron: '*/15 * * * *'   # every 15 minutes — tune as needed
