@@ -205,4 +205,163 @@ def get_descendant_taxa_bfs(root_taxon_id: str) -> Set[str]:
 
         # light progress output
         if seen_parents % 250 == 0:
-            pri
+            print(f"[INFO] Descendants: visited parents={seen_parents}, collected taxa={len(ids)}")
+
+        _sleep_with_jitter(SLEEP_CHILDREN)
+
+    return ids
+
+def get_descendants_cached_for_root(root_id: str) -> List[str]:
+    """
+    Loads descendants list from cache if fresh and matches root_id; otherwise recomputes and saves cache.
+    Cache file is shared (single-root) by default; if you monitor multiple roots, it will be rebuilt per root.
+    """
+    cache = load_desc_cache()
+    if cache and str(cache.get("root_id")) == str(root_id) and cache_is_fresh(cache):
+        taxon_ids = cache.get("taxon_ids") or []
+        print(f"[INFO] Using cached descendant list for root {root_id}: {len(taxon_ids)} taxa (fresh)")
+        return [str(x) for x in taxon_ids]
+
+    print(f"[INFO] Building descendant list for root {root_id} (cache miss/stale)...")
+    ids = get_descendant_taxa_bfs(root_id)
+    taxon_ids = sorted(ids, key=lambda x: int(x) if x.isdigit() else x)
+    save_desc_cache(root_id, taxon_ids)
+    print(f"[INFO] Cached descendant list for root {root_id}: {len(taxon_ids)} taxa")
+    return taxon_ids
+
+# ----------------------------
+# Flags scraping
+# ----------------------------
+def fetch_flags_for_taxon(taxon_id: str) -> str:
+    url = f"https://www.inaturalist.org/flags?taxon_id={taxon_id}"
+    r = http_get(url, headers=HEADERS, timeout=30)
+    return r.text
+
+def parse_flags(html: str) -> List[Dict[str, str]]:
+    """
+    Extract flags as dicts {'id','title','link'}.
+    Filters to numeric IDs only to reduce false positives.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    results: List[Dict[str, str]] = []
+
+    for a in soup.select("a[href*='/flags/']"):
+        href = a.get("href") or ""
+        if "/flags/" not in href:
+            continue
+
+        fid = href.split("/flags/")[-1].split("#")[0].split("?")[0].strip()
+        if not fid.isdigit():
+            continue
+
+        text = a.get_text(strip=True) or f"Flag {fid}"
+        link = "https://www.inaturalist.org" + href.split("#")[0]
+        results.append({"id": fid, "title": text, "link": link})
+
+    # dedupe by flag id
+    dedup: Dict[str, Dict[str, str]] = {}
+    for r in results:
+        dedup[r["id"]] = r
+    return list(dedup.values())
+
+# ----------------------------
+# GitHub issue creation
+# ----------------------------
+def create_github_issue(title: str, body: str) -> Dict:
+    url = f"https://api.github.com/repos/{GITHUB_REPO}/issues"
+    headers = {
+        "Authorization": f"token {GITHUB_TOKEN}",
+        "Accept": "application/vnd.github+json",
+        "User-Agent": USER_AGENT,
+    }
+    payload = {"title": title, "body": body, "labels": ["iNaturalist flag"]}
+    r = http_post(url, json_payload=payload, headers=headers, timeout=30)
+    return r.json()
+
+# ----------------------------
+# Main
+# ----------------------------
+def main() -> None:
+    if not ROOT_TAXON_IDS:
+        print("No INAT_ROOT_TAXON_IDS provided. Set env var to comma-separated root taxon IDs.")
+        return
+    if not (GITHUB_REPO and GITHUB_TOKEN):
+        print("GITHUB_REPOSITORY and GITHUB_TOKEN environment variables are required.")
+        return
+
+    seen = load_seen()
+    new_seen = set(seen)
+
+    # For large clades, cache descendants; rebuild at most once per TTL.
+    # If multiple roots are provided, we rebuild cache per root (single cache file).
+    all_taxon_ids: List[str] = []
+    for root in ROOT_TAXON_IDS:
+        try:
+            descendants = get_descendants_cached_for_root(root)
+        except Exception as e:
+            print(f"[ERROR] Failed to fetch descendants for {root}: {e}")
+            continue
+        all_taxon_ids.extend(descendants)
+        _sleep_with_jitter(1.0)
+
+    # Deduplicate across roots (keep stable order)
+    seen_taxa: Set[str] = set()
+    unique_taxa: List[str] = []
+    for tid in all_taxon_ids:
+        if tid not in seen_taxa:
+            seen_taxa.add(tid)
+            unique_taxa.append(tid)
+
+    total_taxa = len(unique_taxa)
+    print(f"[INFO] Monitoring flags for {total_taxa} taxa total (across roots).")
+
+    # Optional cap per run (useful for huge sets; run more frequently or shard by schedule)
+    if MAX_TAXA_PER_RUN and total_taxa > MAX_TAXA_PER_RUN:
+        unique_taxa = unique_taxa[:MAX_TAXA_PER_RUN]
+        print(f"[INFO] MAX_TAXA_PER_RUN set; limiting this run to {len(unique_taxa)} taxa.")
+
+    created_count = 0
+    checked_count = 0
+
+    for tid in unique_taxa:
+        checked_count += 1
+        try:
+            html = fetch_flags_for_taxon(tid)
+            flags = parse_flags(html)
+
+            for flag in flags:
+                fid = flag["id"]
+                if fid in seen:
+                    continue
+
+                title = f"iNaturalist flag: taxon {tid} — {flag['title']}"
+                body = (
+                    f"**New iNaturalist flag** for taxon `{tid}`\n\n"
+                    f"- Link: {flag['link']}\n"
+                    f"- Title: {flag['title']}\n\n"
+                    f"Please review the flag on iNaturalist: {flag['link']}"
+                )
+
+                # Only mark as seen if the issue was successfully created
+                try:
+                    issue = create_github_issue(title, body)
+                    print("[INFO] Created issue:", issue.get("html_url"))
+                    new_seen.add(fid)
+                    created_count += 1
+                except Exception as e:
+                    print(f"[ERROR] Failed to create issue for flag {fid}: {e}")
+
+            # progress
+            if checked_count % 250 == 0:
+                print(f"[INFO] Progress: checked taxa={checked_count}/{len(unique_taxa)}, new issues={created_count}")
+
+        except Exception as e:
+            print(f"[WARN] Failed to check flags for taxon {tid}: {e}")
+
+        _sleep_with_jitter(SLEEP_FLAGS)
+
+    save_seen(new_seen)
+    print(f"[INFO] Done. checked={checked_count}, new_issues={created_count}, seen_flags_total={len(new_seen)}")
+
+if __name__ == "__main__":
+    main()
