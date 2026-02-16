@@ -5,6 +5,9 @@ header_links:
   - label: Home
     link: /
 
+  - label: News
+    link: /news
+
   - label: Bibliography
     link: /resources/tw/filter/bibliography
 
