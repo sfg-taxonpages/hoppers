@@ -39,7 +39,7 @@ import { ref, onMounted } from 'vue'
 import { makeAPIRequest } from '@/utils/request.js'
 
 const props = defineProps({
-  otuId: {
+  taxonId: {
     type: Number,
     required: true
   }
@@ -54,7 +54,7 @@ onMounted(async () => {
   try {
     const { data } = await makeAPIRequest.get('/observations', {
       params: {
-        otu_id: [],
+        taxon_name_id: [props.taxonId],
         observation_type: ['Observation::Media'],
         descendants: true,
         per: 2000
