@@ -21,8 +21,9 @@
             otu_filter: otuIds.join('|')
           }
         }"
-        >View descendants image matrix</RouterLink
       >
+        View descendants observations in Image matrix
+      </RouterLink>
       <span
         class="text-sm"
         v-else
