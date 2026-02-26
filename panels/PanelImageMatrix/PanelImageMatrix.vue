@@ -22,7 +22,7 @@
           }
         }"
       >
-        View descendants observations in Image matrix
+        Species of <span v-html="taxon.cached_html" />
       </RouterLink>
       <span
         class="text-sm"
@@ -39,8 +39,8 @@ import { ref, onMounted } from 'vue'
 import { makeAPIRequest } from '@/utils/request.js'
 
 const props = defineProps({
-  taxonId: {
-    type: Number,
+  taxon: {
+    type: Object,
     required: true
   }
 })
@@ -54,7 +54,7 @@ onMounted(async () => {
   try {
     const { data } = await makeAPIRequest.get('/observations', {
       params: {
-        taxon_name_id: [props.taxonId],
+        taxon_name_id: [props.taxon.id],
         observation_type: ['Observation::Media'],
         descendants: true,
         per: 2000
