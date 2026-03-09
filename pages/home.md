@@ -22,7 +22,7 @@ project: 'TaxonPages: World Auchenorrhyncha Database'
         </tr>
         <tr>
           <td colspan="6" class="text-center">
-            Valid Species: <ValidSpeciesCount/>; Fossil Species: <FossilSpeciesCount/>; <ProjectStats :data="['Taxon names', 'Collection objects', 'Project sources', 'Documents', 'Citations', 'Images']" class="capitalize"/>
+            Valid Species: <ValidSpeciesCount/>; Fossil Species: <FossilSpeciesCount/>; <ProjectStats :data="['Taxon names', 'Collection objects', 'Project sources', 'Documents', 'Citations', 'Images', 'Sounds']" class="capitalize"/>
           </td>
         </tr>
       </tbody>
