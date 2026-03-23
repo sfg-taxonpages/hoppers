@@ -33,7 +33,7 @@ taxa_page:
       - - - id: panel:asserted-distributions      
   biological_associations:
     panels:
-      - - - panel:biological-associations
+      - - - panel:biological-associations-v2
   inaturalist:
     label: 'iNaturalist'
     rank_group: ['GenusGroup', 'SpeciesGroup']
