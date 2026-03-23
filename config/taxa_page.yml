@@ -6,7 +6,7 @@ taxa_page:
           - panel:descendants
           - panel:nomenclature
 
-        - - id: panel:map
+        - - id: panel:map-v2
             bind:
               cluster: false
           - panel:type
