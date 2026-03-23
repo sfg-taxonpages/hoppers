@@ -26,7 +26,7 @@ taxa_page:
     rank_group: ['SpeciesGroup']
     panels:
       - - - panel:field-occurrences
- asserted_distributions:
+  asserted_distributions:
     label: 'Asserted Distribution'
     rank_group: ['SpeciesGroup']
     panels:
