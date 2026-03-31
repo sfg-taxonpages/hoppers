@@ -296,8 +296,12 @@ function mergeByArea(dists) {
     if (!m.otuEntries.some((e) => e.otuId === dist.otuId)) {
       m.otuEntries.push({ otuId: dist.otuId, otuName: dist.otuName, isSynonym: dist.isSynonym })
     }
-    m.citationList.push(...dist.citationList)
-  }
+    const combined = [
+      ...m.citationList,
+      ...dist.citationList
+    ]
+
+    m.citationList = dedupeCitations(combined)  }
   return [...byArea.values()]
 }
 
@@ -340,7 +344,7 @@ function makeDistribution(item, citationList) {
     areaType: shape.geographic_area_type?.name || '',
     parentName: shape.parent?.name || 'Earth',
     isAbsent: !!item.is_absent,
-    citationList
+    citationList: dedupeCitations(citationList)
   }
 }
 
@@ -399,15 +403,25 @@ function shortCitation(body) {
   return `${authorsStr.split(',')[0].trim()} et al., ${year}`
 }
 
-async function fetchCitations(distributionIds) {
-  if (!distributionIds.length) return new Map()
+// ADD: deduplicate citations by full string
+function dedupeCitations(list) {
+  const seen = new Set()
+  return list.filter((c) => {
+    const key = c.full
+    if (!key || seen.has(key)) return false
+    seen.add(key)
+    return true
+  })
+}
+
+async function fetchCitations(distributionItems) {
+  if (!distributionItems.length) return new Map()
 
   const params = new URLSearchParams()
   params.append('citation_object_type', 'AssertedDistribution')
-  distributionIds.forEach((id) => params.append('citation_object_id[]', id))
+  distributionItems.forEach((d) => params.append('citation_object_id[]', d.id))
 
   const { data: citations } = await makeAPIRequest.get(`/citations?${params.toString()}`)
-  if (!citations.length) return new Map()
 
   const sourceIds = [...new Set(citations.map((c) => c.source_id))]
   const srcParams = new URLSearchParams()
@@ -417,6 +431,35 @@ async function fetchCitations(distributionIds) {
   const sourceMap = new Map(sources.map((s) => [s.id, s.cached]))
 
   const result = new Map()
+  for (const item of distributionItems) {
+    if (item.citations?.length) {
+      const entries = item.citations.map((cit) => {
+        const full = cit.source?.name || ''
+
+        const yearMatch = full.match(/\((\d{4}[a-z]?)\)/)
+        const year = yearMatch ? yearMatch[1] : ''
+
+        const authors = full.split('(')[0].trim().replace(/\.$/, '')
+
+        let normalized = year
+            ? `${authors}, ${year}`
+            : authors
+
+        if (cit.pages) {
+          normalized += `:${cit.pages}`
+        }
+
+        return {
+          id: `embedded-${cit.id}`,
+          display: shortCitation(normalized),
+          full
+        }
+      })
+
+      result.set(item.id, entries)
+    }
+  }
+
   for (const cit of citations) {
     const entry = {
       id: cit.id,
@@ -424,7 +467,42 @@ async function fetchCitations(distributionIds) {
       full: sourceMap.get(cit.source_id) || cit.citation_source_body || ''
     }
     if (!result.has(cit.citation_object_id)) result.set(cit.citation_object_id, [])
-    result.get(cit.citation_object_id).push(entry)
+    result.set(
+        cit.citation_object_id,
+        dedupeCitations([
+          ...result.get(cit.citation_object_id),
+          entry
+        ])
+    )
+  }
+
+  // ADD: include inline / direct source citations (not present in /citations)
+  for (const item of distributionItems) {
+    let inline = null
+
+    // Case A: embedded source object
+    if (item.citation_source_body) {
+      inline = item.citation_source_body
+    }
+    else if (item.source?.cached) {
+      inline = item.source.cached
+    }
+
+    // Case B: fallback cached string (API dependent)
+    else if (item.cached) {
+      inline = item.cached
+    }
+
+    if (inline) {
+      const entry = {
+        id: `inline-${item.id}`,
+        display: shortCitation(inline),
+        full: inline
+      }
+
+      if (!result.has(item.id)) result.set(item.id, [])
+      result.get(item.id).push(entry)
+    }
   }
   return result
 }
@@ -460,12 +538,12 @@ async function loadDistributions() {
       synonymTaxonNameIds.forEach((id) => params.append('taxon_name_id[]', id))
       params.append('per', props.per)
       const { data } = await makeAPIRequest.get(`/asserted_distributions?${params.toString()}`)
-      synData = data.filter((d) => !knownOtuIds.has(String(d.asserted_distribution_object_id)))
+      synData = data
     }
 
     // Step 3: citations for all records in one batch
     const allData = [...adData, ...synData]
-    const citationsMap = await fetchCitations(allData.map((d) => d.id))
+    const citationsMap = await fetchCitations(allData)
 
     distributions.value = allData.map((item) => makeDistribution(item, citationsMap.get(item.id) || []))
     totalCount.value = distributions.value.length
