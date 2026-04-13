@@ -7,7 +7,7 @@
       <VTable>
         <VTableHeader>
           <VTableHeaderRow>
-            <VTableHeaderCell>Key</VTableHeaderCell>
+            <VTableHeaderCell>Dichotomous keys</VTableHeaderCell>
           </VTableHeaderRow>
         </VTableHeader>
         <VTableBody>

@@ -7,7 +7,7 @@
       <VTable>
         <VTableHeader>
           <VTableHeaderRow>
-            <VTableHeaderCell>Observation matrix</VTableHeaderCell>
+            <VTableHeaderCell>Matrix based keys</VTableHeaderCell>
           </VTableHeaderRow>
         </VTableHeader>
         <VTableBody>
