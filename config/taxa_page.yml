@@ -12,10 +12,10 @@ taxa_page:
               cluster: false
           - panel:type
           - panel:type-specimen
-          - panel:image-matrix
-          - panel:keys
           - panel:etymology
           - panel:content
+          - panel:image-matrix
+          - panel:keys
           - panel:statistics
 
   specimen_records:
