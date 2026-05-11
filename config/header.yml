@@ -8,6 +8,9 @@ header_links:
   - label: News
     link: /news
 
+  - label: Keys
+    link: /keys
+
   - label: Bibliography
     link: /resources/tw/filter/bibliography
 
