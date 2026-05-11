@@ -5,6 +5,7 @@ taxa_page:
           - panel:sounds
           - panel:descendants
           - panel:nomenclature
+          - panel:nomenclature-references
 
         - - id: panel:map-v2
             bind:
@@ -15,7 +16,6 @@ taxa_page:
           - panel:keys
           - panel:etymology
           - panel:content
-          - panel:nomenclature-references
           - panel:statistics
 
   specimen_records:

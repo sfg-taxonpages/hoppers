@@ -158,7 +158,7 @@
           </template>
           <div
             class="px-4 pb-4 text-sm leading-relaxed"
-            v-html="convertUrlsToLinks(activeCitation.full)"
+            v-html="sanitizeAndLinkifyHtml(activeCitation.full)"
           />
         </VModal>
       </Teleport>
@@ -216,7 +216,7 @@
 import { computed, onMounted, ref } from 'vue'
 import { makeAPIRequest } from '@/utils'
 import { useOtuPageRequest } from '@/modules/otus/helpers/useOtuPageRequest.js'
-import { convertUrlsToLinks } from '@/modules/bibliography/utils/convertUrlsToLinks.js'
+import { sanitizeAndLinkifyHtml } from '@/utils'
 
 const props = defineProps({
   otuId: {

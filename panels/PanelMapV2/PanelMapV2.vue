@@ -1,20 +1,22 @@
 <template>
   <VCard>
     <div class="relative">
-      <Teleport to="body">
-        <VModal
-          v-if="activeCitation"
-          @close="activeCitation = null"
-        >
-          <template #header>
-            <div class="text-sm font-medium">Reference</div>
-          </template>
-          <div
-            class="px-4 pb-4 text-sm leading-relaxed"
-            v-html="linkify(activeCitation.full)"
-          />
-        </VModal>
-      </Teleport>
+      <ClientOnly>
+        <Teleport to="body">
+          <VModal
+            v-if="activeCitation"
+            @close="activeCitation = null"
+          >
+            <template #header>
+              <div class="text-sm font-medium">Reference</div>
+            </template>
+            <div
+              class="px-4 pb-4 text-sm leading-relaxed"
+              v-html="linkify(activeCitation.full)"
+            />
+          </VModal>
+        </Teleport>
+      </ClientOnly>
       <ClientOnly>
         <VSpinner v-if="isLoading" />
         <VMap
