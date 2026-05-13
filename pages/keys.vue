@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto py-6">
-    <h1 class="text-4xl font-bold">Keys</h1>
-    <div class="flex flex-col gap-4 mt-4">
+    <h1 class="text-4xl font-bold mb-6">Keys</h1>
+    <div class="flex flex-col gap-4">
       <ObservationMatricesTable />
       <KeysTable />
     </div>
