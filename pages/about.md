@@ -46,7 +46,7 @@ Welcome to *{{ frontmatter.project }}*, a [TaxonPages](https://github.com/Specie
 * [Gjonov, Ilia V.](https://orcid.org/0000-0002-4239-9756) - data curator
 * Gonçalves, Ana Clara - data provider
 * [Gonçalves, Clayton Corrêa](https://orcid.org/0000-0003-3045-3425) - data curator
-* [Hendrix, Solomon V.](https://orcid.org/0000-0002-9564-1198) - data curator
+* [Hendrix, Solomon Vincent](https://orcid.org/0000-0002-9564-1198) - data curator
 * [McKamey, Stuart](https://orcid.org/0000-0002-9617-0594) - data provider
 * [Kohler, Michelle](https://orcid.org/0000-0001-7185-4511) - data curator
 * [Kunz, Gernot](https://orcid.org/0000-0001-7858-0402) - photo provider
