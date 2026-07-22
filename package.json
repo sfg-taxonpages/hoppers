@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@jlpereira/taxonpages-module-dichotomous": "latest",
-    "@sfgrp/taxonpages": "latest"
+    "@sfgrp/taxonpages": "latest",
+    "three": "^0.185.1"
   }
 }

@@ -10,6 +10,16 @@ taxa_page:
         - - id: panel:map-v2
             bind:
               cluster: false
+          - id: panel:3d-viewer
+            bind:
+              # Optional per-theme viewer background. Defaults:
+              # background:
+              #   light: '#f5f5f5'
+              #   dark: '#111827'
+              models:
+                22289:
+                  url: 'stl/01_Thamnotettix_zelleri.stl'
+                  description: 'Thamnotettix zelleri — 3D surface scan.'
           - panel:type
           - panel:type-specimen
           - panel:etymology
@@ -30,7 +40,7 @@ taxa_page:
     label: 'Asserted distribution'
     rank_group: ['SpeciesGroup']
     panels:
-      - - - id: panel:asserted-distributions      
+      - - - id: panel:asserted-distributions
   biological_associations:
     panels:
       - - - panel:biological-associations
