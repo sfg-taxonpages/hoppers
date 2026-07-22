@@ -198,7 +198,8 @@ function loadModel(url) {
       loading.value = false
     },
     undefined,
-    () => {
+    (err) => {
+      console.error('[Panel3DViewer] Failed to load model:', err)
       error.value = 'Failed to load 3D model.'
       loading.value = false
     }
