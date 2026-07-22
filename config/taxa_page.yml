@@ -18,8 +18,9 @@ taxa_page:
               #   dark: '#111827'
               models:
                 22289:
-                  url: 'stl/01_Thamnotettix_zelleri.stl'
-                  description: 'Thamnotettix zelleri — 3D surface scan.'
+                  # url: 'stl/01_Thamnotettix_zelleri.stl'
+                  uls: 'https://www.dropbox.com/scl/fi/z9a630ve0zkoezfba41uq/07_Thamnotettix_thrax.stl?rlkey=i53sty7ryxo0afw05t4xb7lix&dl=0'
+                  description: 'Thamnotettix zelleri — 3D model designed by Radost Angelova (2026)'
           - panel:type
           - panel:type-specimen
           - panel:etymology
