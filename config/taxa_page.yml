@@ -19,7 +19,7 @@ taxa_page:
               models:
                 22289:
                   # url: 'stl/01_Thamnotettix_zelleri.stl'
-                  uls: 'http://dmitriev.speciesfile.org/3i_models/01_Thamnotettix_zelleri.stl'
+                  url: 'http://dmitriev.speciesfile.org/3i_models/01_Thamnotettix_zelleri.stl'
                   description: 'Thamnotettix zelleri — 3D model created by Radost Angelova (2026)'
           - panel:type
           - panel:type-specimen
