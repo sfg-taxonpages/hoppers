@@ -32,6 +32,7 @@
 
 <script setup>
 import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { STLLoader } from 'three/examples/jsm/loaders/STLLoader.js'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
@@ -78,7 +79,7 @@ let renderer,
   scene,
   camera,
   controls,
-  mesh,
+  object,
   frameId,
   resizeObserver,
   themeObserver
@@ -112,6 +113,17 @@ function resolveUrl(url) {
   return `${base}/${url.replace(/^\/+/, '')}`
 }
 
+function detectFormat(url, explicitFormat) {
+  if (explicitFormat) {
+    return explicitFormat.toLowerCase()
+  }
+
+  const clean = url.split(/[?#]/)[0]
+  const ext = clean.split('.').pop()?.toLowerCase()
+
+  return ext
+}
+
 function render() {
   frameId = requestAnimationFrame(render)
   controls?.update()
@@ -133,6 +145,12 @@ function fitCameraToObject(object) {
   controls.update()
 }
 
+function centerObject(object) {
+  const box = new THREE.Box3().setFromObject(object)
+  const center = box.getCenter(new THREE.Vector3())
+  object.position.sub(center)
+}
+
 function initScene() {
   const el = container.value
   const width = el.clientWidth || 1
@@ -149,10 +167,19 @@ function initScene() {
   renderer.setSize(width, height)
   el.appendChild(renderer.domElement)
 
-  scene.add(new THREE.AmbientLight(0xffffff, 1.2))
-  const keyLight = new THREE.DirectionalLight(0xffffff, 1.5)
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x444444, 1.2))
+
+  const keyLight = new THREE.DirectionalLight(0xffffff, 1.2)
   keyLight.position.set(1, 1, 1)
   scene.add(keyLight)
+
+  const fillLight = new THREE.DirectionalLight(0xffffff, 0.6)
+  fillLight.position.set(-1, 0.5, -1)
+  scene.add(fillLight)
+
+  const backLight = new THREE.DirectionalLight(0xffffff, 0.4)
+  backLight.position.set(0, -1, -1)
+  scene.add(backLight)
 
   controls = new OrbitControls(camera, renderer.domElement)
   controls.enableDamping = true
@@ -175,35 +202,81 @@ function initScene() {
   render()
 }
 
-function loadModel(url) {
-  loading.value = true
+function normalizeMaterials(child) {
+  const materials = Array.isArray(child.material)
+    ? child.material
+    : [child.material]
+
+  materials.forEach((m) => {
+    m.side = THREE.DoubleSide
+  })
+}
+
+function finalizeObject(loadedObject) {
+  loadedObject.traverse((child) => {
+    if (child.isMesh) {
+      child.geometry.computeVertexNormals()
+      normalizeMaterials(child)
+    }
+  })
+
+  centerObject(loadedObject)
+  scene.add(loadedObject)
+  fitCameraToObject(loadedObject)
+
+  object = loadedObject
+  loading.value = false
+}
+
+function handleLoadError(err) {
+  console.error('[Panel3DViewer] Failed to load model:', err)
+  error.value = 'Failed to load 3D model.'
+  loading.value = false
+}
+
+function loadGLTF(resolvedUrl) {
+  const loader = new GLTFLoader()
+
+  loader.load(
+    resolvedUrl,
+    (gltf) => finalizeObject(gltf.scene),
+    undefined,
+    handleLoadError
+  )
+}
+
+function loadSTL(resolvedUrl) {
   const loader = new STLLoader()
 
   loader.load(
-    resolveUrl(url),
+    resolvedUrl,
     (geometry) => {
-      geometry.center()
-      geometry.computeVertexNormals()
-
       const material = new THREE.MeshStandardMaterial({
         color: 0x999999,
         metalness: 0.1,
         roughness: 0.75
       })
 
-      mesh = new THREE.Mesh(geometry, material)
-      scene.add(mesh)
-      fitCameraToObject(mesh)
-
-      loading.value = false
+      finalizeObject(new THREE.Mesh(geometry, material))
     },
     undefined,
-    (err) => {
-      console.error('[Panel3DViewer] Failed to load model:', err)
-      error.value = 'Failed to load 3D model.'
-      loading.value = false
-    }
+    handleLoadError
   )
+}
+
+function loadModel(url, format) {
+  loading.value = true
+
+  const resolvedUrl = resolveUrl(url)
+  const type = detectFormat(url, format)
+
+  if (type === 'glb' || type === 'gltf') {
+    loadGLTF(resolvedUrl)
+  } else if (type === 'stl') {
+    loadSTL(resolvedUrl)
+  } else {
+    handleLoadError(new Error(`Unsupported 3D model format: "${type}"`))
+  }
 }
 
 onMounted(() => {
@@ -212,7 +285,7 @@ onMounted(() => {
   }
 
   initScene()
-  loadModel(model.value.url)
+  loadModel(model.value.url, model.value.format)
 })
 
 onBeforeUnmount(() => {
@@ -221,9 +294,18 @@ onBeforeUnmount(() => {
   themeObserver?.disconnect()
   controls?.dispose()
 
-  if (mesh) {
-    mesh.geometry.dispose()
-    mesh.material.dispose()
+  if (object) {
+    object.traverse((child) => {
+      if (child.isMesh) {
+        child.geometry?.dispose()
+
+        if (Array.isArray(child.material)) {
+          child.material.forEach((m) => m.dispose())
+        } else {
+          child.material?.dispose()
+        }
+      }
+    })
   }
 
   if (renderer) {
