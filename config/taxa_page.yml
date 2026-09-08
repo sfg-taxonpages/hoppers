@@ -19,7 +19,25 @@ taxa_page:
               models:
                 22289:
                   url: 'stl/01_Thamnotettix_zelleri.glb'
-                  description: 'Thamnotettix zelleri — 3D model created by Radost Angelova (2026)'
+                  description: 'Thamnotettix zelleri — aedeagus, 3D model created by Radost Angelova (2026)'
+                22180:
+                  url: 'stl/02_T_dilutior_LR.glb'
+                  description: 'Thamnotettix dilutior — aedeagus, 3D model created by Radost Angelova (2026)'
+                22249:
+                  url: 'stl/03_T_minoidis_LR.glb'
+                  description: 'Thamnotettix minoidis — aedeagus, 3D model created by Radost Angelova (2026)'
+                22247:
+                  url: 'stl/04_T_creticus_LR.glb'
+                  description: 'Thamnotettix creticus — aedeagus, 3D model created by Radost Angelova (2026)'
+                22220:
+                  url: 'stl/05_T_confinis_LR.glb'
+                  description: 'Thamnotettix confinis — aedeagus, 3D model created by Radost Angelova (2026)'
+                22186:
+                  url: 'stl/06_T_exemptus_LR.glb'
+                  description: 'Thamnotettix exemtus — aedeagus, 3D model created by Radost Angelova (2026)'
+                22287:
+                  url: 'stl/07_T_thrax_LR.glb'
+                  description: 'Thamnotettix thrax — aedeagus, 3D model created by Radost Angelova (2026)'
           - panel:type
           - panel:type-specimen
           - panel:etymology
